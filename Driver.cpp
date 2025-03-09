@@ -66,18 +66,27 @@ Party Driver::createParty()
     return Party(newTank1, newTank2, newTank3, newHealer, newDPS);
 }
 
+void Driver::displayAllInstances(int maxDungeons) 
+{
     for (int i = 0; i < maxDungeons; i++) {
-        Dungeon currDungeon = dungeons[i];
+        Dungeon currDungeon = this->dungeons[i];
 
-        // all available instances
+        // Only access available instances
         if (currDungeon.getIsAvailable()) {
             // If there is a party in the instance, the status should say "active"
-
             // If the instance is empty, the status should say "empty"
-            // At the end of the execution there should be a summary of how many parties an instance have served and total time served.
-
+            bool isActive = currDungeon.getIsActive();
+            displayStatus(isActive);
+            
+            // At the end of the execution there should be a summary of 
+            // how many parties an instance have served and total time served
+            int partiesServed = currDungeon.getPartiesServed();
+            int totalTimeServed = currDungeon.getTotalTimeServed();
+            std::cout << partiesServed << std::endl;
+            std::cout << totalTimeServed << std::endl;
         }
     }
+}
 
 }
 

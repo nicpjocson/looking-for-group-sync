@@ -27,6 +27,7 @@ public:
 
 	Party createParty();
 
+	void displayAllInstances(int maxDungeons);
 	//bool getIsRunning();
 
 private:
