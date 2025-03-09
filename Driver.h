@@ -35,6 +35,5 @@ private:
 	int minTime;
 	int maxTime;
 
-	bool readConfig();
 };
 
