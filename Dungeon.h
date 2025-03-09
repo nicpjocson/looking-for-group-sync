@@ -5,6 +5,8 @@
 class Dungeon
 {
 public:
+	void addParty(Party party);
+
 	bool getIsAvailable();
 	int getPartiesServed();
 	int getTotalTimeServed();

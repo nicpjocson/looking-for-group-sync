@@ -1,5 +1,10 @@
 #include "Dungeon.h"
 
+void Dungeon::addParty(Party party)
+{
+	this->parties.push_back(party);
+}
+
 bool Dungeon::getIsAvailable()
 {
 	return isAvailable;
