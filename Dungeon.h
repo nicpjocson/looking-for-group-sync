@@ -8,6 +8,7 @@ public:
 	//Dungeon();
 
 	void addParty(Party party);
+	void dungeonTask();
 
 	bool getIsFull();
 	bool getIsAvailable();

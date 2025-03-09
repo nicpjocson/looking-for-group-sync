@@ -9,6 +9,11 @@ void Dungeon::addParty(Party party)
 	this->parties.push_back(party);
 }
 
+void Dungeon::dungeonTask() 
+{
+	//std::this_thread::sleep_for(std::chrono::seconds(2));
+}
+
 /*
 	
 	Getters
