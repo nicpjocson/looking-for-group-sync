@@ -2,16 +2,30 @@
 
 void Driver::initialize()
 {
-}
-
-void Driver::run()
-{
-}
-
-
-
+    // TODO check
+    for (int i = 0; i < MAX_DUNGEONS; i++) {
+        //Dungeon dungeon();
+        //this->dungeons.push_back(dungeon);
     }
 
+    // Initialize Tank queue
+    for (int i = 0; i < TANK_PLAYERS; i++) {
+        Tank* tank = new Tank;
+        tankQueue.push(tank);
+    }
+
+    // Initialize Healer queue
+    for (int i = 0; i < HEALER_PLAYERS; i++) {
+        Healer* healer = new Healer;
+        healerQueue.push(healer);
+    }
+
+    // Initialize DPS queue
+    for (int i = 0; i < DPS_PLAYERS; i++) {
+        DPS* dps = new DPS;
+        dpsQueue.push(dps);
+    }
+}
 
         }
     }

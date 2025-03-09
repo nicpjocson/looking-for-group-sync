@@ -28,12 +28,12 @@ public:
 	//bool getIsRunning();
 
 private:
-	std::vector<Dungeon> dungeons;
 	bool isRunning;
 
-	int maxDungeons;
-	int minTime;
-	int maxTime;
+	std::vector<Dungeon> dungeons;
 
+	std::queue<Tank*> tankQueue;
+	std::queue<Healer*> healerQueue;
+	std::queue<DPS*> dpsQueue;
 };
 
