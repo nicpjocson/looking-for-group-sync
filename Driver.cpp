@@ -60,7 +60,7 @@ void Driver::run()
             dungeon->startDungeon();
         }
 
-        //waitForThreadsToFinish();
+        this->waitForThreadsToFinish();
     }
 }
 
