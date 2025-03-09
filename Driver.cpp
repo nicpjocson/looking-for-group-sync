@@ -45,7 +45,26 @@ void Driver::run()
     }
 }
 
-void displayAllInstances(int maxDungeons) {
+Party Driver::createParty() 
+{
+    // Assign 3 Tanks to party
+    Tank* newTank1 = tankQueue.front();
+    tankQueue.pop();
+    Tank* newTank2 = tankQueue.front();
+    tankQueue.pop();
+    Tank* newTank3 = tankQueue.front();
+    tankQueue.pop();
+
+    // Assign 1 Healer to party
+    Healer* newHealer = healerQueue.front();
+    healerQueue.pop();
+
+    // Assign 1 DPS to party
+    DPS* newDPS = dpsQueue.front();
+    dpsQueue.pop();
+
+    return Party(newTank1, newTank2, newTank3, newHealer, newDPS);
+}
 
     for (int i = 0; i < maxDungeons; i++) {
         Dungeon currDungeon = dungeons[i];

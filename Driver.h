@@ -25,6 +25,8 @@ public:
 	void initialize();
 	void run();
 
+	Party createParty();
+
 	//bool getIsRunning();
 
 private:
