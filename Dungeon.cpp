@@ -12,11 +12,6 @@ Dungeon::Dungeon(int id)
 	this->totalTimeServed = 0;
 }
 
-void Dungeon::clearDungeon()
-{
-	this->isRunning = false;
-	this->dungeonParties.clear();
-}
 //void Dungeon::addParty(Party party)
 //{
 //	this->dungeonParties.push_back(party);
@@ -25,21 +20,27 @@ void Dungeon::clearDungeon()
 void Dungeon::startDungeon() 
 {
 	this->isRunning = true;
-	std::thread thread(&Dungeon::dungeonTask, this);
+	std::thread thread(&Dungeon::clearDungeon, this);
 	thread.detach();
 
 	// DEBUG
 	std::cout << "started dungeon/thread " << this->id << std::endl;
 }
 
-void Dungeon::dungeonTask() 
+void Dungeon::clearDungeon()
 {
 	while (this->dungeonParties < MAX_PARTIES) {}
 
 	std::cout << this->dungeonParties << std::endl;
 	std::this_thread::sleep_for(std::chrono::seconds(2/*randomClearTime()*/));
-	clearDungeon();
 	std::cout << "clearing dungeon" << this->id << std::endl;
+	this->dungeonCleared();
+}
+
+void Dungeon::dungeonCleared()
+{
+	this->isRunning = false;
+	this->dungeonParties = 0;
 	std::cout << "cleared dungeon" << this->id << std::endl;
 }
 

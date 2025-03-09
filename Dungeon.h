@@ -13,14 +13,14 @@ public:
 
 	//void addParty(Party party);
 	void startDungeon();
-	void dungeonTask();
 	void clearDungeon();
+	void dungeonCleared();
 	int randomClearTime();
 
 	// Getters
 	bool getIsRunning();
 	bool getIsFull();
-	bool getIsAvailable();
+	bool getIsAvailable(); // UNCLEAR WHAT AVAILABLE MEANS !!
 	bool getIsActive();
 	int getPartiesServed();
 	float getTotalTimeServed();
