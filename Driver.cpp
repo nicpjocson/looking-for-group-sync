@@ -149,6 +149,21 @@ void Driver::displayAllInstances(int maxDungeons)
             float totalTimeServed = currDungeon->getTotalTimeServed();
             std::cout << partiesServed << std::endl;
             std::cout << totalTimeServed << std::endl;
+
+            // Leftover Players
+            int leftoverTank = tankQueue.size();
+            int leftoverHealer = healerQueue.size();
+            int leftoverDPS = dpsQueue.size();
+
+            if (leftoverTank > 0) {
+                std::cout << "Leftover Tank Players: " << leftoverTank << std::endl;
+            }
+            if (leftoverHealer > 0) {
+                std::cout << "Leftover Healer Players: " << leftoverHealer << std::endl;
+            }
+            if (leftoverDPS > 0) {
+                std::cout << "Leftover DPS Players: " << leftoverDPS << std::endl;
+            }
         }
     }
 }
