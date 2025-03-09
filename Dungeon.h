@@ -9,6 +9,7 @@ public:
 
 	void addParty(Party party);
 
+	bool getIsFull();
 	bool getIsAvailable();
 	int getPartiesServed();
 	int getTotalTimeServed();

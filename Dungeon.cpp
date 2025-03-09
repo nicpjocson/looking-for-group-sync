@@ -9,6 +9,16 @@ void Dungeon::addParty(Party party)
 	this->parties.push_back(party);
 }
 
+/*
+	
+	Getters
+
+*/
+bool Dungeon::getIsFull()
+{
+	return this->isFull;
+}
+
 bool Dungeon::getIsAvailable()
 {
 	return isAvailable;
