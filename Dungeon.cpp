@@ -6,7 +6,7 @@ Dungeon::Dungeon(int id)
 	this->id = id;
 	this->dungeonParties = 0;
 	this->isFull = false;
-	this->isAvailable = true;
+	this->isAvailable = true; // UNCLEAR WHAT AVAILABLE MEANS !!
 	this->isActive = false;
 	this->partiesServed = 0;
 	this->totalTimeServed = 0;
