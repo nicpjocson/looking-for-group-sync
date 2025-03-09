@@ -1,9 +1,6 @@
 #pragma once
 #include <vector>
-#include "Player.h"
-#include "Tank.h"
-#include "Healer.h"
-#include "DPS.h"
+#include "Party.h"
 
 class Dungeon
 {

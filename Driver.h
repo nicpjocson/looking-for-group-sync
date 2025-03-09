@@ -7,9 +7,15 @@
 #include <sstream>
 
 #include <thread>
+#include <queue>
 
+#include "config.h"
 #include "Dungeon.h"
+#include "Party.h"
 #include "Player.h"
+#include "Tank.h"
+#include "Healer.h"
+#include "DPS.h"
 
 class Driver
 {
