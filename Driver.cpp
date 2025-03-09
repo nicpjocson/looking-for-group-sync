@@ -27,6 +27,20 @@ void Driver::initialize()
     }
 }
 
+void Driver::run()
+{
+    while (isRunning) {
+        Party newParty = createParty();
+
+        // Search for first non-full dungeon
+        for (int i = 0; i < MAX_DUNGEONS; i++) {
+            Dungeon currDungeon = this->dungeons[i];
+
+            // If Dungeon is not full
+            if (!currDungeon.getIsFull()) {
+                // Assign party to dungeon
+                currDungeon.addParty(newParty);
+            }
         }
     }
 }
