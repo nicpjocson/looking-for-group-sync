@@ -35,9 +35,10 @@ private:
 
 	bool isRunning = false;
 
-	std::vector<Party> dungeonParties;
+	int dungeonParties;
 
 	bool isFull;
+
 	// To display
 	bool isAvailable;
 	bool isActive;

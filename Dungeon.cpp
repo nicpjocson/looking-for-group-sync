@@ -3,8 +3,8 @@
 // DOUBLE CHECK
 Dungeon::Dungeon(int id) 
 {
-	this->dungeonParties = {};
 	this->id = id;
+	this->dungeonParties = 0;
 	this->isFull = false;
 	this->isAvailable = true;
 	this->isActive = false;
@@ -35,9 +35,9 @@ void Dungeon::startDungeon()
 
 void Dungeon::dungeonTask() 
 {
-	while (this->parties.size() < MAX_PARTIES) {}
+	while (this->dungeonParties < MAX_PARTIES) {}
 
-	std::cout << this->dungeonParties.size() << std::endl;
+	std::cout << this->dungeonParties << std::endl;
 	std::this_thread::sleep_for(std::chrono::seconds(2/*randomClearTime()*/));
 	clearDungeon();
 	std::cout << "clearing dungeon" << this->id << std::endl;
