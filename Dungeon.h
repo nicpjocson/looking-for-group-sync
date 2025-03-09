@@ -13,7 +13,7 @@ public:
 	bool getIsAvailable();
 	bool getIsActive();
 	int getPartiesServed();
-	int getTotalTimeServed();
+	float getTotalTimeServed();
 
 
 private:

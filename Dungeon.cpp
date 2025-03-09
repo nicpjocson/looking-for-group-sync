@@ -31,11 +31,18 @@ bool Dungeon::getIsActive()
 
 int Dungeon::getPartiesServed()
 {
-	return 0;
+	return partiesServed;
 }
 
-int Dungeon::getTotalTimeServed()
+float Dungeon::getTotalTimeServed()
 {
-	return 0;
+	return totalTimeServed;
+}
+
+}
+
+bool Dungeon::setIsAvailable()
+{
+	return isAvailable;
 }
 
