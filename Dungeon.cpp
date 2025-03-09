@@ -12,16 +12,15 @@ Dungeon::Dungeon(int id)
 	this->totalTimeServed = 0;
 }
 
-void Dungeon::addParty(Party party)
-{
-	this->dungeonParties.push_back(party);
-}
-
 void Dungeon::clearDungeon()
 {
 	this->isRunning = false;
 	this->dungeonParties.clear();
 }
+//void Dungeon::addParty(Party party)
+//{
+//	this->dungeonParties.push_back(party);
+//}
 
 void Dungeon::startDungeon() 
 {

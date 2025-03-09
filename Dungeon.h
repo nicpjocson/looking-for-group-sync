@@ -11,7 +11,7 @@ class Dungeon
 public:
 	Dungeon(int id);
 
-	void addParty(Party party);
+	//void addParty(Party party);
 	void startDungeon();
 	void dungeonTask();
 	void clearDungeon();
