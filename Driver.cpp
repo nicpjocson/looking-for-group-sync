@@ -88,6 +88,16 @@ void Driver::displayAllInstances(int maxDungeons)
     }
 }
 
+void Driver::displayStatus(bool isActive) 
+{
+    // active
+    if (isActive) {
+        std::cout << "Active" << std::endl;
+    }
+    // empty
+    else {
+        std::cout << "Empty" << std::endl;
+    }
 }
 
 /*
