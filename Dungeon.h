@@ -15,6 +15,9 @@ public:
 	int getPartiesServed();
 	float getTotalTimeServed();
 
+	bool setIsFull();
+	bool setIsAvailable();
+	bool setIsActive();
 
 private:
 	int currParties;

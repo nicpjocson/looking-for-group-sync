@@ -39,6 +39,14 @@ float Dungeon::getTotalTimeServed()
 	return totalTimeServed;
 }
 
+/*
+
+	Setters
+
+*/
+bool Dungeon::setIsFull()
+{
+	return this->isFull;
 }
 
 bool Dungeon::setIsAvailable()
@@ -46,3 +54,12 @@ bool Dungeon::setIsAvailable()
 	return isAvailable;
 }
 
+/*
+	Dungeon Status
+	* ACTIVE: Returns true if dungeon has at least one party. 
+	* EMPTY: Returns false, otherwise.
+*/
+bool Dungeon::setIsActive()
+{
+	return isActive;
+}
