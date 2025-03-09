@@ -33,7 +33,7 @@ public:
 private:
 	bool isRunning = false;
 
-	std::vector<Party> parties;
+	std::vector<Party> dungeonParties;
 
 	bool isFull;
 	// To display
