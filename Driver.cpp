@@ -76,3 +76,12 @@ void displayAllInstances(int maxDungeons) {
 
 }
 
+/*
+
+    Getters
+
+*/
+//bool Driver::getIsRunning() {
+//    return this->isRunning;
+//}
+

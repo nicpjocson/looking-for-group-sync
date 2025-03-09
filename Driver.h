@@ -25,8 +25,11 @@ public:
 	void initialize();
 	void run();
 
+	//bool getIsRunning();
+
 private:
 	std::vector<Dungeon> dungeons;
+	bool isRunning;
 
 	int maxDungeons;
 	int minTime;
