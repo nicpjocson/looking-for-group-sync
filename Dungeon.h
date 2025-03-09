@@ -14,20 +14,16 @@ public:
 	int getPartiesServed();
 	int getTotalTimeServed();
 
+
 private:
-	enum Status { ACTIVE, EMPTY };
-
 	int currParties;
-	int maxParties;
 
-	std::vector<std::vector<Player>> parties;
+	std::vector<Party> parties;
 
-	std::vector<Tank> tankQueue;
-	std::vector<Healer> healerQueue;
-	std::vector<DPS> dpsQueue;
+	bool isFull;
 
 	bool isAvailable;
-	Status status;
+	bool isActive;
 	int partiesServed;
 	float totalTimeServed;
 };
