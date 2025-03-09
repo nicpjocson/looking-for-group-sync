@@ -5,6 +5,8 @@
 class Dungeon
 {
 public:
+	//Dungeon();
+
 	void addParty(Party party);
 
 	bool getIsAvailable();

@@ -1,5 +1,9 @@
 #include "Dungeon.h"
 
+//Dungeon::Dungeon() 
+//{
+//}
+
 void Dungeon::addParty(Party party)
 {
 	this->parties.push_back(party);
