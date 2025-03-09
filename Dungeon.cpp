@@ -21,7 +21,12 @@ bool Dungeon::getIsFull()
 
 bool Dungeon::getIsAvailable()
 {
-	return isAvailable;
+	return this->isAvailable;
+}
+
+bool Dungeon::getIsActive()
+{
+	return this->isActive;
 }
 
 int Dungeon::getPartiesServed()

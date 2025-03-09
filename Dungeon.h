@@ -11,6 +11,7 @@ public:
 
 	bool getIsFull();
 	bool getIsAvailable();
+	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();
 
