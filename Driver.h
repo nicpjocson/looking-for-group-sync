@@ -26,8 +26,8 @@ public:
 	void run();
 	void waitForThreadsToFinish();
 
-	Party createParty();
-
+	void createParties();
+	void createParty();
 	bool canCreateParty();
 
 	void displayAllInstances(int maxDungeons);
@@ -37,6 +37,7 @@ private:
 	bool isRunning = false;
 
 	std::vector<Dungeon*> dungeons;
+	std::queue<Party*> partyQueue;
 
 	std::queue<Tank*> tankQueue;
 	std::queue<Healer*> healerQueue;

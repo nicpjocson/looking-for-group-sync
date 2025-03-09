@@ -26,31 +26,63 @@ void Driver::initialize()
 void Driver::run()
 {
     this->isRunning = true;
+    this->createParties();
+
     while (isRunning)
     {
-        // Can't create anymore full parties
-        if (!canCreateParty()) {
-            // End program
-            this->isRunning = false;
-            break;
-        }
+        //// Can't create anymore full parties
+        //if (!canCreateParty()) {
+        //    // End program
+        //    this->isRunning = false;
+        //    break;
+        //}
 
-        // Create party
-        Party newParty = createParty();
-
-        // Search for first non-full dungeon
+        //// Search for first non-full dungeon
+        // For each dungeon
         for (Dungeon* dungeon : this->dungeons) {
-            // If Dungeon is not full
-            if (!dungeon->getIsFull()) {
-                // Assign party to dungeon
-                dungeon->addParty(newParty);
-                //dungeon->startDungeon();
+            //// If Dungeon is not full
+            //if (!dungeon->getIsFull()) {
+            //    // Assign party to dungeon
+            //    dungeon->addParty(newParty);
+            //    //dungeon->startDungeon();
+            //}
+
+            // Assign Parties to Dungeon??
+            while (MAX_PARTIES < this->partyQueue.size()) {
+                dungeon->setIsFull(true);
+                dungeon->setIsActive(true);
+
+                for (int i = 0; i < MAX_PARTIES; i++) {
+                    this->partyQueue.pop();
+                }
             }
+
+            dungeon->startDungeon();
         }
 
         //waitForThreadsToFinish();
-        
-        // clear full dungeons
+    }
+}
+
+bool Driver::canCreateParty()
+{
+    // Less players in queue than players required for full party
+    if (this->tankQueue.size() < 1 ||
+        this->healerQueue.size() < 1 ||
+        this->dpsQueue.size() < 3) {
+        return false;
+    }
+
+    // Enough players
+    return true;
+}
+
+// Create as many full parties as possible
+void Driver::createParties()
+{
+    while (this->canCreateParty()) 
+    {
+        this->createParty();
     }
 }
 
@@ -69,38 +101,28 @@ void Driver::waitForThreadsToFinish()
     }
 }
 
-bool Driver::canCreateParty()
+void Driver::createParty()
 {
-    // Less players in queue than players required for full party
-    if (this->tankQueue.size() < 3 || 
-        this->healerQueue.size() < 1 ||
-        this->dpsQueue.size() < 1) {
-        return false;
-    }
-    
-    // Enough players
-    return true;
-}
+    // Assign 1 Tank to Party
+    Tank* newTank = this->tankQueue.front();
+    this->tankQueue.pop();
 
-Party Driver::createParty()
-{
-    // Assign 1 Tank to party
-    Tank* newTank = tankQueue.front();
-    tankQueue.pop();
+    // Assign 1 Healer to Party
+    Healer* newHealer = this->healerQueue.front();
+    this->healerQueue.pop();
 
-    // Assign 1 Healer to party
-    Healer* newHealer = healerQueue.front();
-    healerQueue.pop();
+    // Assign 3 DPS to Party
+    DPS* newDPS1 = this->dpsQueue.front();
+    this->dpsQueue.pop();
+    DPS* newDPS2 = this->dpsQueue.front();
+    this->dpsQueue.pop();
+    DPS* newDPS3 = this->dpsQueue.front();
+    this->dpsQueue.pop();
 
-    // Assign 1 DPS to party
-    DPS* newDPS1 = dpsQueue.front();
-    dpsQueue.pop();
-    DPS* newDPS2 = dpsQueue.front();
-    dpsQueue.pop();
-    DPS* newDPS3 = dpsQueue.front();
-    dpsQueue.pop();
-
-    return Party(newTank, newHealer, newDPS1, newDPS2, newDPS3);
+    Party* newParty = new Party(newTank, newHealer, newDPS1, newDPS2, newDPS3);
+    this->partyQueue.push(newParty);
+    // DEBUG
+    std::cout << "created new party " << this->partyQueue.size() - 1 << std::endl;
 }
 
 /*
