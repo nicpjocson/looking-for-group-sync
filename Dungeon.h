@@ -9,7 +9,7 @@
 class Dungeon
 {
 public:
-	Dungeon();
+	Dungeon(int id);
 
 	void addParty(Party party);
 	void startDungeon();
@@ -31,6 +31,8 @@ public:
 	bool setIsActive();
 
 private:
+	int id;
+
 	bool isRunning = false;
 
 	std::vector<Party> dungeonParties;

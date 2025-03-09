@@ -1,9 +1,10 @@
 #include "Dungeon.h"
 
 // DOUBLE CHECK
-Dungeon::Dungeon() 
+Dungeon::Dungeon(int id) 
 {
 	this->dungeonParties = {};
+	this->id = id;
 	this->isFull = false;
 	this->isAvailable = true;
 	this->isActive = false;
@@ -28,7 +29,8 @@ void Dungeon::startDungeon()
 	std::thread thread(&Dungeon::dungeonTask, this);
 	thread.detach();
 
-	std::cout << "started thread" << std::endl;
+	// DEBUG
+	std::cout << "started dungeon/thread " << this->id << std::endl;
 }
 
 void Dungeon::dungeonTask() 
@@ -37,8 +39,9 @@ void Dungeon::dungeonTask()
 
 	std::cout << this->dungeonParties.size() << std::endl;
 	std::this_thread::sleep_for(std::chrono::seconds(2/*randomClearTime()*/));
-	std::cout << "closing thread" << std::endl;
 	clearDungeon();
+	std::cout << "clearing dungeon" << this->id << std::endl;
+	std::cout << "cleared dungeon" << this->id << std::endl;
 }
 
 int Dungeon::randomClearTime()

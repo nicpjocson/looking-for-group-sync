@@ -4,7 +4,7 @@ void Driver::initialize()
 {
     // Create dungeons/threads
     for (int i = 0; i < MAX_DUNGEONS; i++) {
-        this->dungeons.push_back(new Dungeon);
+        this->dungeons.push_back(new Dungeon(i));
     }
 
     // Initialize Tank queue
