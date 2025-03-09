@@ -6,7 +6,7 @@
 #include <fstream>
 #include <sstream>
 
-#include <thread>
+//#include <thread>
 #include <queue>
 
 #include "config.h"
@@ -24,18 +24,19 @@ public:
 
 	void initialize();
 	void run();
+	void waitForThreadsToFinish();
 
 	Party createParty();
+
+	bool canCreateParty();
 
 	void displayAllInstances(int maxDungeons);
 	void displayStatus(bool status);
 
-	//bool getIsRunning();
-
 private:
-	bool isRunning;
+	bool isRunning = false;
 
-	std::vector<Dungeon> dungeons;
+	std::vector<Dungeon*> dungeons;
 
 	std::queue<Tank*> tankQueue;
 	std::queue<Healer*> healerQueue;

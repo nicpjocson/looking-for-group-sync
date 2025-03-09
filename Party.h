@@ -6,13 +6,13 @@
 class Party
 {
 public:
-	Party(Tank* tank1, Tank* tank2, Tank* tank3, Healer* healer, DPS* dps);
+	Party(Tank* tank, Healer* healer, DPS* dps1, DPS* dps2, DPS* dps3);
 
 private:
-	Tank* tank1;
-	Tank* tank2;
-	Tank* tank3;
+	Tank* tank;
 	Healer* healer;
-	DPS* dps;
+	DPS* dps1;
+	DPS* dps2;
+	DPS* dps3;
 };
 
