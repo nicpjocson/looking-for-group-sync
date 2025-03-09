@@ -1,7 +1,8 @@
 #include "Driver.h"
 
 int main() {
-
-    run();
+    Driver driver;
+    driver.initialize();
+    driver.run();
 }
 
