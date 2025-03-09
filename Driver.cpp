@@ -4,26 +4,22 @@ void Driver::initialize()
 {
     // Create dungeons/threads
     for (int i = 0; i < MAX_DUNGEONS; i++) {
-        Dungeon* dungeon = new Dungeon;
-        this->dungeons.push_back(dungeon);
+        this->dungeons.push_back(new Dungeon);
     }
 
     // Initialize Tank queue
     for (int i = 0; i < TANK_PLAYERS; i++) {
-        Tank* tank = new Tank;
-        this->tankQueue.push(tank);
+        this->tankQueue.push(new Tank);
     }
 
     // Initialize Healer queue
     for (int i = 0; i < HEALER_PLAYERS; i++) {
-        Healer* healer = new Healer;
-        this->healerQueue.push(healer);
+        this->healerQueue.push(new Healer);
     }
 
     // Initialize DPS queue
     for (int i = 0; i < DPS_PLAYERS; i++) {
-        DPS* dps = new DPS;
-        this->dpsQueue.push(dps);
+        this->dpsQueue.push(new DPS);
     }
 }
 
