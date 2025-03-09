@@ -69,6 +69,11 @@ bool Dungeon::getIsAvailable()
 	return this->isAvailable;
 }
 
+/*
+	Dungeon Status
+	* ACTIVE: Returns true if dungeon has at least one party.
+	* EMPTY: Returns false, otherwise.
+*/
 bool Dungeon::getIsActive()
 {
 	return this->isActive;
@@ -89,22 +94,18 @@ float Dungeon::getTotalTimeServed()
 	Setters
 
 */
-bool Dungeon::setIsFull()
+void Dungeon::setIsFull(bool isFull)
 {
-	return this->isFull;
+	this->isFull = isFull;
 }
 
-bool Dungeon::setIsAvailable()
+void Dungeon::setIsAvailable(bool isAvailable)
 {
-	return isAvailable;
+	this->isAvailable = isAvailable;
 }
 
-/*
-	Dungeon Status
-	* ACTIVE: Returns true if dungeon has at least one party. 
-	* EMPTY: Returns false, otherwise.
-*/
-bool Dungeon::setIsActive()
+void Dungeon::setIsActive(bool isActive)
 {
-	return isActive;
+	this->isActive = isActive;
 }
+

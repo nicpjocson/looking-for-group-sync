@@ -26,9 +26,9 @@ public:
 	float getTotalTimeServed();
 
 	// Setters
-	bool setIsFull();
-	bool setIsAvailable();
-	bool setIsActive();
+	void setIsFull(bool isFull);
+	void setIsAvailable(bool isAvailable);
+	void setIsActive(bool isActive);
 
 private:
 	int id;
