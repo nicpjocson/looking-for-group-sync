@@ -13,9 +13,9 @@
 */
 
 const int MAX_INSTANCES = 10;
-const int TANK_PLAYERS = 30;
+const int TANK_PLAYERS = 10;
 const int HEALER_PLAYERS = 10;
-const int DPS_PLAYERS = 10;
+const int DPS_PLAYERS = 30;
 const int MIN_TIME = 5;
 const int MAX_TIME = 15;
 
