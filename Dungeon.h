@@ -17,6 +17,8 @@ public:
 	void dungeonCleared();
 	int randomClearTime();
 
+	void incrementDungeonParties();
+
 	// Getters
 	bool getIsRunning();
 	bool getIsFull();
