@@ -21,14 +21,14 @@ public:
 
 	// Getters
 	bool getIsRunning();
-	bool getIsFull();
+	//bool getIsFull();
 	bool getIsAvailable(); // UNCLEAR WHAT AVAILABLE MEANS !!
 	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();
 
 	// Setters
-	void setIsFull(bool isFull);
+	//void setIsFull(bool isFull);
 	void setIsAvailable(bool isAvailable);
 	void setIsActive(bool isActive);
 
@@ -39,7 +39,7 @@ private:
 
 	int dungeonParties;
 
-	bool isFull;
+	//bool isFull;
 
 	// To display
 	bool isAvailable;

@@ -5,7 +5,7 @@ Dungeon::Dungeon(int id)
 {
 	this->id = id;
 	this->dungeonParties = 0;
-	this->isFull = false;
+	//this->isFull = false;
 	this->isAvailable = true; // UNCLEAR WHAT AVAILABLE MEANS !!
 	this->isActive = false;
 	this->partiesServed = 0;
@@ -54,6 +54,7 @@ void Dungeon::clearDungeon()
 void Dungeon::dungeonCleared()
 {
 	this->isRunning = false;
+	//this->isFull = false;
 	this->partiesServed += this->dungeonParties;
 	this->dungeonParties = 0;
 	std::cout << "cleared dungeon" << this->id << std::endl;
@@ -74,10 +75,10 @@ bool Dungeon::getIsRunning()
 	return this->isRunning;
 }
 
-bool Dungeon::getIsFull()
-{
-	return this->isFull;
-}
+//bool Dungeon::getIsFull()
+//{
+//	return this->isFull;
+//}
 
 bool Dungeon::getIsAvailable()
 {
@@ -109,10 +110,10 @@ int Dungeon::getTotalTimeServed()
 	Setters
 
 */
-void Dungeon::setIsFull(bool isFull)
-{
-	this->isFull = isFull;
-}
+//void Dungeon::setIsFull(bool isFull)
+//{
+//	this->isFull = isFull;
+//}
 
 void Dungeon::setIsAvailable(bool isAvailable)
 {
