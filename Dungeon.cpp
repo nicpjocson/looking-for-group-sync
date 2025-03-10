@@ -43,26 +43,38 @@ void Dungeon::searchForParties()
 // DOUBLE CHECK
 void Dungeon::clearDungeon()
 {
+	int clearTime = randomClearTime();
 	//while (this->dungeonParties < MAX_PARTIES) {}
-	std::cout << this->dungeonParties << "lalalala" << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(2/*randomClearTime()*/));
-	std::cout << "clearing dungeon" << this->id << std::endl;
-	this->dungeonCleared();
+	std::cout << "parties in dungeon: " << this->dungeonParties << std::endl;
+	// Simulate clear
+	std::this_thread::sleep_for(std::chrono::seconds(10/*clearTime*/));
+	// !! CHECKPOINT: STUCK HERE????
+	// ???? CHECKPOINT: NEVER PRINTS
+	std::cout << "clearing dungeon..." << this->id << std::endl;
+	// !! DOUBLE CHECK: verify if should call here
+	this->dungeonCleared(clearTime);
 }
 
 // DOUBLE CHECK
-void Dungeon::dungeonCleared()
+void Dungeon::dungeonCleared(int clearTime)
 {
-	this->isRunning = false;
 	//this->isFull = false;
+	this->isActive = false;
 	this->partiesServed += this->dungeonParties;
+	this->totalTimeServed += clearTime;
+
+	// "Empty" dungeon
 	this->dungeonParties = 0;
+	// !! REALIZED ISRUNNING IS NOT USED IN A LOOP
+	this->isRunning = false;
+	// CHECKPOINT: NEVER PRINTS
 	std::cout << "cleared dungeon" << this->id << std::endl;
 }
 
+// DOUBLE CHECK
 int Dungeon::randomClearTime()
 {
-	return rand() % MAX_TIME - MIN_TIME; // IDK brb ill pee n get food
+	return rand() % MAX_TIME - MIN_TIME;
 }
 
 /*
@@ -97,7 +109,7 @@ bool Dungeon::getIsActive()
 
 int Dungeon::getPartiesServed()
 {
-	return partiesServed;
+	return this->partiesServed;
 }
 
 int Dungeon::getTotalTimeServed()
