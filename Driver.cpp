@@ -81,7 +81,8 @@ void Driver::createParties()
 {
     while (this->canCreateParty()) 
     {
-        this->createParty();
+        Party* newParty = this->createParty();
+        this->partyQueue.push(newParty);
     }
 
     // TODO
@@ -102,7 +103,7 @@ void Driver::waitForThreadsToFinish()
     }
 }
 
-void Driver::createParty()
+Party* Driver::createParty()
 {
     // Assign 1 Tank to Party
     Tank* newTank = this->tankQueue.front();
@@ -119,11 +120,13 @@ void Driver::createParty()
     this->dpsQueue.pop();
     DPS* newDPS3 = this->dpsQueue.front();
     this->dpsQueue.pop();
-
-    Party* newParty = new Party(newTank, newHealer, newDPS1, newDPS2, newDPS3);
-    this->partyQueue.push(newParty);
+    
     // DEBUG
     std::cout << "created new party " << this->partyQueue.size() - 1 << std::endl;
+
+    Party* newParty = new Party(newTank, newHealer, newDPS1, newDPS2, newDPS3);
+    
+    return newParty;
 }
 
 /*

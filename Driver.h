@@ -21,7 +21,7 @@ public:
 	void waitForThreadsToFinish();
 
 	void createParties();
-	void createParty();
+	Party* createParty();
 	bool canCreateParty();
 
 	void displayAllInstances(int maxDungeons);
