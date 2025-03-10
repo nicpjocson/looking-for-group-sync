@@ -12,11 +12,7 @@ Dungeon::Dungeon(int id)
 	this->totalTimeServed = 0;
 }
 
-//void Dungeon::addParty(Party party)
-//{
-//	this->dungeonParties.push_back(party);
-//}
-
+// DOUBLE CHECK
 void Dungeon::startDungeon() 
 {
 	this->isRunning = true;
@@ -27,6 +23,7 @@ void Dungeon::startDungeon()
 	std::cout << "started dungeon/thread " << this->id << std::endl;
 }
 
+// DOUBLE CHECK
 void Dungeon::clearDungeon()
 {
 	//while (this->dungeonParties < MAX_PARTIES) {}
@@ -36,6 +33,7 @@ void Dungeon::clearDungeon()
 	this->dungeonCleared();
 }
 
+// DOUBLE CHECK
 void Dungeon::dungeonCleared()
 {
 	this->isRunning = false;

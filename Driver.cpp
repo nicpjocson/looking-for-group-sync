@@ -30,23 +30,8 @@ void Driver::run()
 
     while (isRunning)
     {
-        //// Can't create anymore full parties
-        //if (!canCreateParty()) {
-        //    // End program
-        //    this->isRunning = false;
-        //    break;
-        //}
-
-        //// Search for first non-full dungeon
-        // For each dungeon
+        // For each dungeon, search for parties
         for (Dungeon* dungeon : this->dungeons) {
-            //// If Dungeon is not full
-            //if (!dungeon->getIsFull()) {
-            //    // Assign party to dungeon
-            //    dungeon->addParty(newParty);
-            //    //dungeon->startDungeon();
-            //}
-
             // Assign Parties to Dungeon??
             while (MAX_PARTIES < this->partyQueue.size()) {
                 dungeon->setIsFull(true);
@@ -59,8 +44,22 @@ void Driver::run()
 
             dungeon->startDungeon();
         }
+            //    // Assign Parties to Dungeon
+            //    while (MAX_PARTIES < this->partyQueue.size()) {
+            //        dungeon->setIsFull(true);
+            //        dungeon->setIsActive(true);
 
         this->waitForThreadsToFinish();
+            //        for (int i = 0; i < MAX_PARTIES; i++) {
+            //            this->partyQueue.pop();
+            //        }
+            //    }
+
+            //    dungeon->startDungeon();
+            //}
+
+            //this->waitForThreadsToFinish();
+        }
     }
 }
 
@@ -73,7 +72,7 @@ bool Driver::canCreateParty()
         return false;
     }
 
-    // Enough players
+    // There are enough players for full party
     return true;
 }
 
@@ -84,6 +83,8 @@ void Driver::createParties()
     {
         this->createParty();
     }
+
+    // TODO
 }
 
 void Driver::waitForThreadsToFinish()

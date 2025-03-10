@@ -1,12 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-
-// For reading config.txt
-#include <fstream>
-#include <sstream>
-
-//#include <thread>
 #include <queue>
 
 #include "config.h"
