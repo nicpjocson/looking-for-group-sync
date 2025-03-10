@@ -23,6 +23,7 @@ public:
 	void createParties();
 	Party* createParty();
 	bool canCreateParty();
+	void handleLeftoverPlayers();
 
 	void displayAllInstances(int maxDungeons);
 	void displayStatus(bool status);
@@ -36,5 +37,9 @@ private:
 	std::queue<Tank*> tankQueue;
 	std::queue<Healer*> healerQueue;
 	std::queue<DPS*> dpsQueue;
+
+	int leftoverTanks = 0;
+	int leftoverHealers = 0;
+	int leftoverDPS = 0;
 };
 

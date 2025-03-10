@@ -86,8 +86,17 @@ void Driver::createParties()
     }
 
     // TODO
+    this->handleLeftoverPlayers();
 }
 
+void Driver::handleLeftoverPlayers()
+{
+    this->leftoverTanks = this->tankQueue.size();
+    this->leftoverHealers = this->healerQueue.size();
+    this->leftoverDPS = this->dpsQueue.size();
+}
+
+// DOUBLE CHECK
 void Driver::waitForThreadsToFinish()
 {
     bool standby = true;
