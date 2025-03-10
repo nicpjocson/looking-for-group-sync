@@ -145,21 +145,20 @@ Party* Driver::createParty()
 */
 void Driver::displayAllInstances(int maxDungeons) 
 {
-    for (int i = 0; i < maxDungeons; i++) {
-        Dungeon* currDungeon = this->dungeons[i];
-
+    for (Dungeon* dungeon : this->dungeons)
+    {
         // Only access available instances
-        if (currDungeon->getIsAvailable()) {
+        if (dungeon->getIsAvailable()) {
             // DOUBLE CHECK: is this at the end of execution also????
             // If there is a party in the instance, the status should say "active"
             // If the instance is empty, the status should say "empty"
-            bool isActive = currDungeon->getIsActive();
+            bool isActive = dungeon->getIsActive();
             displayStatus(isActive);
             
             // At the end of the execution there should be a summary of 
             // how many parties an instance have served and total time served
-            int partiesServed = currDungeon->getPartiesServed();
-            float totalTimeServed = currDungeon->getTotalTimeServed();
+            int partiesServed = dungeon->getPartiesServed();
+            float totalTimeServed = dungeon->getTotalTimeServed();
             std::cout << partiesServed << std::endl;
             std::cout << totalTimeServed << std::endl;
 
