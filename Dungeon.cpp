@@ -124,8 +124,8 @@ void Dungeon::setIsActive(bool isActive)
 	this->isActive = isActive;
 }
 
-void Dungeon::incrementDungeonParties()
-{
-	this->dungeonParties++;
-}
+//void Dungeon::incrementDungeonParties()
+//{
+//	this->dungeonParties++;
+//}
 

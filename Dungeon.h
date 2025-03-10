@@ -11,14 +11,13 @@ class Dungeon
 public:
 	Dungeon(int id);
 
-	//void addParty(Party party);
 	void startDungeon();
 	void searchForParties();
 	void clearDungeon();
 	void dungeonCleared(int clearTime);
 	int randomClearTime();
 
-	void incrementDungeonParties();
+	//void incrementDungeonParties();
 
 	// Getters
 	bool getIsRunning();
