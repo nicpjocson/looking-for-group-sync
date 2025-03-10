@@ -14,7 +14,7 @@ public:
 	//void addParty(Party party);
 	void startDungeon();
 	void clearDungeon();
-	void dungeonCleared();
+	void dungeonCleared(int clearTime);
 	int randomClearTime();
 
 	void incrementDungeonParties();
@@ -25,7 +25,7 @@ public:
 	bool getIsAvailable(); // UNCLEAR WHAT AVAILABLE MEANS !!
 	bool getIsActive();
 	int getPartiesServed();
-	float getTotalTimeServed();
+	int getTotalTimeServed();
 
 	// Setters
 	void setIsFull(bool isFull);
@@ -45,6 +45,6 @@ private:
 	bool isAvailable;
 	bool isActive;
 	int partiesServed;
-	float totalTimeServed;
+	int totalTimeServed;
 };
 

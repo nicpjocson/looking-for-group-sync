@@ -82,9 +82,9 @@ int Dungeon::getPartiesServed()
 	return partiesServed;
 }
 
-float Dungeon::getTotalTimeServed()
+int Dungeon::getTotalTimeServed()
 {
-	return totalTimeServed;
+	return this->totalTimeServed;
 }
 
 /*

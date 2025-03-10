@@ -154,7 +154,7 @@ void Driver::displayAllInstances(int maxDungeons)
             // At the end of the execution there should be a summary of 
             // how many parties an instance have served and total time served
             int partiesServed = dungeon->getPartiesServed();
-            float totalTimeServed = dungeon->getTotalTimeServed();
+            int totalTimeServed = dungeon->getTotalTimeServed();
             std::cout << partiesServed << std::endl;
             std::cout << totalTimeServed << std::endl;
 
