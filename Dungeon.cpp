@@ -1,7 +1,7 @@
 #include "Dungeon.h"
 
 // DOUBLE CHECK
-Dungeon::Dungeon(int id) 
+Dungeon::Dungeon(int id)
 {
 	this->id = id;
 	this->dungeonParties = 0;
@@ -12,15 +12,32 @@ Dungeon::Dungeon(int id)
 	this->totalTimeServed = 0;
 }
 
-// DOUBLE CHECK
 void Dungeon::startDungeon() 
 {
 	this->isRunning = true;
-	std::thread thread(&Dungeon::clearDungeon, this);
+	std::thread thread(&Dungeon::searchForParties, this);
 	thread.detach();
 
 	// DEBUG
 	std::cout << "started dungeon/thread " << this->id << std::endl;
+}
+
+// !! used to be in Driver class
+// !! verify if should keep here
+void Dungeon::searchForParties()
+{
+	// Dungeon is not full
+	// REFACTOR??
+	while (/*!this->isFull*/this->dungeonParties < MAX_PARTIES)
+	{
+		this->dungeonParties++;
+		//this->partyQueue.pop();
+	}
+
+	// When full
+	if (/*this->isFull*/this->dungeonParties == MAX_PARTIES) {
+		this->clearDungeon();
+	}
 }
 
 // DOUBLE CHECK

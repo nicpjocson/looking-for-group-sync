@@ -33,26 +33,26 @@ void Driver::run()
         // For each dungeon, search for parties
         for (Dungeon* dungeon : this->dungeons) {
 
-            // Dungeon is not full AND there are parties in looking for dungeon
-            // REFACTOR??
-            while (!dungeon->getIsFull() && this->partyQueue.size() > 0)
-            {
-                dungeon->incrementDungeonParties();
-                this->partyQueue.pop();
+            // At least one party looking for dungeon
+            // !! CONFIRM IF ONLY FULL PARTIES CAN CLEAR DUNGEON
+            if (this->partyQueue.size() > 0) {
+                dungeon->startDungeon();
             }
 
-            //    // Assign Parties to Dungeon
-            //    while (MAX_PARTIES < this->partyQueue.size()) {
-            //        dungeon->setIsFull(true);
-            //        dungeon->setIsActive(true);
+            // ???? check if not full
 
-            //        for (int i = 0; i < MAX_PARTIES; i++) {
-            //            this->partyQueue.pop();
-            //        }
-            //    }
+        //    // Assign Parties to Dungeon
+        //    while (MAX_PARTIES < this->partyQueue.size()) {
+        //        dungeon->setIsFull(true);
+        //        dungeon->setIsActive(true);
 
-            //    dungeon->startDungeon();
-            //}
+        //        for (int i = 0; i < MAX_PARTIES; i++) {
+        //            this->partyQueue.pop();
+        //        }
+        //    }
+
+        //    dungeon->startDungeon();
+        //}
 
             //this->waitForThreadsToFinish();
         }

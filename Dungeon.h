@@ -13,6 +13,7 @@ public:
 
 	//void addParty(Party party);
 	void startDungeon();
+	void searchForParties();
 	void clearDungeon();
 	void dungeonCleared(int clearTime);
 	int randomClearTime();
