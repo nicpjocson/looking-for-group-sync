@@ -27,7 +27,7 @@ void Dungeon::startDungeon()
 void Dungeon::clearDungeon()
 {
 	//while (this->dungeonParties < MAX_PARTIES) {}
-	std::cout << this->dungeonParties << std::endl;
+	std::cout << this->dungeonParties << "lalalala" << std::endl;
 	std::this_thread::sleep_for(std::chrono::seconds(2/*randomClearTime()*/));
 	std::cout << "clearing dungeon" << this->id << std::endl;
 	this->dungeonCleared();
@@ -37,6 +37,7 @@ void Dungeon::clearDungeon()
 void Dungeon::dungeonCleared()
 {
 	this->isRunning = false;
+	this->partiesServed += this->dungeonParties;
 	this->dungeonParties = 0;
 	std::cout << "cleared dungeon" << this->id << std::endl;
 }
