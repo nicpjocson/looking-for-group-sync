@@ -23,7 +23,6 @@ public:
 	int getId();
 	bool getIsRunning();
 	//bool getIsFull();
-	bool getIsAvailable(); // UNCLEAR WHAT AVAILABLE MEANS !!
 	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();
@@ -42,7 +41,6 @@ private:
 	//bool isFull;
 
 	// To display
-	bool isAvailable;
 	bool isActive;
 	int partiesServed;
 	int totalTimeServed;
