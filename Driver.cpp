@@ -13,7 +13,7 @@ void Driver::initialize()
 void Driver::run()
 {
     this->isRunning = true;
-    this->createParties();
+    QueueManager::getInstance()->createParties();
 
     while (isRunning)
     {
