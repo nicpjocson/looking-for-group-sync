@@ -22,14 +22,10 @@ public:
 	// Getters
 	int getId();
 	bool getIsRunning();
-	//bool getIsFull();
+
 	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();
-
-	// Setters
-	//void setIsFull(bool isFull);
-	void setIsActive(bool isActive);
 
 private:
 	int id;
