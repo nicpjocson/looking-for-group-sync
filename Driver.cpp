@@ -7,20 +7,7 @@ void Driver::initialize()
         this->dungeons.push_back(new Dungeon(i));
     }
 
-    // Initialize Tank queue
-    for (int i = 0; i < TANK_PLAYERS; i++) {
-        this->tankQueue.push(new Tank);
-    }
-
-    // Initialize Healer queue
-    for (int i = 0; i < HEALER_PLAYERS; i++) {
-        this->healerQueue.push(new Healer);
-    }
-
-    // Initialize DPS queue
-    for (int i = 0; i < DPS_PLAYERS; i++) {
-        this->dpsQueue.push(new DPS);
-    }
+    QueueManager::getInstance()->initialize();
 }
 
 void Driver::run()
