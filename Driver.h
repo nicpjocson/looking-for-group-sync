@@ -11,11 +11,11 @@
 #include "Healer.h"
 #include "DPS.h"
 
+typedef std::string String;
+
 class Driver
 {
 public:
-	typedef std::string String;
-
 	void initialize();
 	void run();
 	void waitForThreadsToFinish();
@@ -25,8 +25,10 @@ public:
 	bool canCreateParty();
 	void handleLeftoverPlayers();
 
-	void displayAllInstances(int maxDungeons);
-	void displayStatus(bool status);
+	void displaySummary();
+	void displayAllInstances();
+	void const displayLeftoverPlayers();
+	String getStatus(bool status);
 
 private:
 	bool isRunning = false;

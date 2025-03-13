@@ -39,39 +39,8 @@ void Driver::run()
             }
         }
     }
-}
 
-bool Driver::canCreateParty()
-{
-    // Less players in queue than players required for full party
-    if (this->tankQueue.size() < 1 ||
-        this->healerQueue.size() < 1 ||
-        this->dpsQueue.size() < 3) {
-        return false;
-    }
-
-    // There are enough players for full party
-    return true;
-}
-
-// Create as many full parties as possible
-void Driver::createParties()
-{
-    while (this->canCreateParty()) 
-    {
-        Party* newParty = this->createParty();
-        this->partyQueue.push(newParty);
-    }
-
-    // TODO
-    this->handleLeftoverPlayers();
-}
-
-void Driver::handleLeftoverPlayers()
-{
-    this->leftoverTanks = this->tankQueue.size();
-    this->leftoverHealers = this->healerQueue.size();
-    this->leftoverDPS = this->dpsQueue.size();
+    this->displaySummary();
 }
 
 // DOUBLE CHECK
@@ -88,6 +57,24 @@ void Driver::waitForThreadsToFinish()
             }
         }
     }
+}
+
+/*
+
+    Party-creation-related
+
+*/
+bool Driver::canCreateParty()
+{
+    // Less players in queue than players required for full party
+    if (this->tankQueue.size() < 1 ||
+        this->healerQueue.size() < 1 ||
+        this->dpsQueue.size() < 3) {
+        return false;
+    }
+
+    // There are enough players for full party
+    return true;
 }
 
 Party* Driver::createParty()
@@ -107,13 +94,32 @@ Party* Driver::createParty()
     this->dpsQueue.pop();
     DPS* newDPS3 = this->dpsQueue.front();
     this->dpsQueue.pop();
-    
+
     // DEBUG
     std::cout << "created new party " << this->partyQueue.size() - 1 << std::endl;
 
     Party* newParty = new Party(newTank, newHealer, newDPS1, newDPS2, newDPS3);
-    
+
     return newParty;
+}
+
+// Create as many full parties as possible
+void Driver::createParties()
+{
+    while (this->canCreateParty()) 
+    {
+        Party* newParty = this->createParty();
+        this->partyQueue.push(newParty);
+    }
+
+    this->handleLeftoverPlayers();
+}
+
+void Driver::handleLeftoverPlayers()
+{
+    this->leftoverTanks = this->tankQueue.size();
+    this->leftoverHealers = this->healerQueue.size();
+    this->leftoverDPS = this->dpsQueue.size();
 }
 
 /*
@@ -121,52 +127,49 @@ Party* Driver::createParty()
     Printing functions
 
 */
-void Driver::displayAllInstances(int maxDungeons) 
+void Driver::displaySummary()
 {
+    std::cout << "==================================================" << std::endl;
+    std::cout << "SUMMARY" << std::endl;
+    std::cout << "==================================================" << std::endl;
+    this->displayAllInstances();
+    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "LEFTOVER PLAYERS" << std::endl;
+    this->displayLeftoverPlayers();
+}
+
+void Driver::displayAllInstances() 
+{
+    // For all available dungeons
     for (Dungeon* dungeon : this->dungeons)
     {
-        // Only access available instances
-        if (dungeon->getIsAvailable()) {
-            // DOUBLE CHECK: is this at the end of execution also????
-            // If there is a party in the instance, the status should say "active"
-            // If the instance is empty, the status should say "empty"
-            bool isActive = dungeon->getIsActive();
-            displayStatus(isActive);
-            
-            // At the end of the execution there should be a summary of 
-            // how many parties an instance have served and total time served
-            int partiesServed = dungeon->getPartiesServed();
-            int totalTimeServed = dungeon->getTotalTimeServed();
-            std::cout << partiesServed << std::endl;
-            std::cout << totalTimeServed << std::endl;
-
-            // Leftover Players
-            int leftoverTank = tankQueue.size();
-            int leftoverHealer = healerQueue.size();
-            int leftoverDPS = dpsQueue.size();
-
-            if (leftoverTank > 0) {
-                std::cout << "Leftover Tank Players: " << leftoverTank << std::endl;
-            }
-            if (leftoverHealer > 0) {
-                std::cout << "Leftover Healer Players: " << leftoverHealer << std::endl;
-            }
-            if (leftoverDPS > 0) {
-                std::cout << "Leftover DPS Players: " << leftoverDPS << std::endl;
-            }
-        }
+        std::cout << "DUNGEON " << dungeon->getId() << std::endl;
+        std::cout << "Status: " << this->getStatus(dungeon->getIsActive()) << std::endl;
+        std::cout << "Parties served: " << dungeon->getPartiesServed() << std::endl;
+        std::cout << "Total time served: " << dungeon->getTotalTimeServed() << std::endl;
     }
 }
 
-void Driver::displayStatus(bool isActive) 
+void const Driver::displayLeftoverPlayers()
 {
-    // Active Dungeon
+    std::cout << "Leftover Tanks: " << this->leftoverTanks << std::endl;
+    std::cout << "Leftover Healers: " << this->leftoverHealers << std::endl;
+    std::cout << "Leftover DPS: " << this->leftoverDPS << std::endl;
+}
+
+String Driver::getStatus(bool isActive) 
+{
+    String status;
+
+    // At leats one party in instance
     if (isActive) {
-        std::cout << "Active" << std::endl;
+        status = "Active";
     }
-    // Empty Dungeon
+    /// Empty instance
     else {
-        std::cout << "Empty" << std::endl;
+       status = "Empty";
     }
+
+    return status;
 }
 
