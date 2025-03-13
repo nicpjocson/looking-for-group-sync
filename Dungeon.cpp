@@ -79,8 +79,10 @@ int Dungeon::randomClearTime()
 
 */
 bool Dungeon::getIsRunning()
+int Dungeon::getId()
 {
 	return this->isRunning;
+	return this->id;
 }
 
 //bool Dungeon::getIsFull()

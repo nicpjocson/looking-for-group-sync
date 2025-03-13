@@ -20,6 +20,7 @@ public:
 	//void incrementDungeonParties();
 
 	// Getters
+	int getId();
 	bool getIsRunning();
 	//bool getIsFull();
 	bool getIsAvailable(); // UNCLEAR WHAT AVAILABLE MEANS !!
