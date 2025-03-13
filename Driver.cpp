@@ -27,6 +27,7 @@ void Driver::run()
         }
     }
 
+    this->waitForThreadsToFinish();
     this->displaySummary();
 }
 
@@ -74,7 +75,7 @@ void Driver::displayAllInstances()
     }
 }
 
-void const Driver::displayLeftoverPlayers()
+void Driver::displayLeftoverPlayers()
 {
     std::cout << "Leftover Tanks: " << this->leftoverTanks << std::endl;
     std::cout << "Leftover Healers: " << this->leftoverHealers << std::endl;
