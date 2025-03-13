@@ -5,7 +5,6 @@ Dungeon::Dungeon(int id)
 {
 	this->id = id;
 	this->dungeonParties = 0;
-	//this->isFull = false;
 	this->isAvailable = true; // UNCLEAR WHAT AVAILABLE MEANS !!
 	this->isActive = false;
 	this->partiesServed = 0;
@@ -44,7 +43,6 @@ void Dungeon::searchForParties()
 void Dungeon::clearDungeon()
 {
 	int clearTime = randomClearTime();
-	//while (this->dungeonParties < MAX_PARTIES) {}
 	std::cout << "parties in dungeon: " << this->dungeonParties << std::endl;
 	// Simulate clear
 	std::this_thread::sleep_for(std::chrono::seconds(10/*clearTime*/));
@@ -58,14 +56,12 @@ void Dungeon::clearDungeon()
 // DOUBLE CHECK
 void Dungeon::dungeonCleared(int clearTime)
 {
-	//this->isFull = false;
 	this->isActive = false;
 	this->partiesServed += this->dungeonParties;
 	this->totalTimeServed += clearTime;
 
 	// "Empty" dungeon
 	this->dungeonParties = 0;
-	// !! REALIZED ISRUNNING IS NOT USED IN A LOOP
 	this->isRunning = false;
 	// CHECKPOINT: NEVER PRINTS
 	std::cout << "cleared dungeon" << this->id << std::endl;

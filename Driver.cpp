@@ -34,27 +34,9 @@ void Driver::run()
         for (Dungeon* dungeon : this->dungeons) {
 
             // At least one party looking for dungeon
-            // !! CONFIRM IF ONLY FULL PARTIES CAN CLEAR DUNGEON
             if (this->partyQueue.size() > 0) {
                 dungeon->startDungeon();
             }
-
-            // ???? check if not full
-
-        //    // Assign Parties to Dungeon
-        //    while (MAX_PARTIES < this->partyQueue.size()) {
-        //        dungeon->setIsFull(true);
-        //        dungeon->setIsActive(true);
-
-        //        for (int i = 0; i < MAX_PARTIES; i++) {
-        //            this->partyQueue.pop();
-        //        }
-        //    }
-
-        //    dungeon->startDungeon();
-        //}
-
-            //this->waitForThreadsToFinish();
         }
     }
 }
