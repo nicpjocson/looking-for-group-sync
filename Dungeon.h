@@ -30,7 +30,6 @@ public:
 
 	// Setters
 	//void setIsFull(bool isFull);
-	void setIsAvailable(bool isAvailable);
 	void setIsActive(bool isActive);
 
 private:

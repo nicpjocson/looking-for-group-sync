@@ -5,7 +5,6 @@ Dungeon::Dungeon(int id)
 {
 	this->id = id;
 	this->dungeonParties = 0;
-	this->isAvailable = true; // UNCLEAR WHAT AVAILABLE MEANS !!
 	this->isActive = false;
 	this->partiesServed = 0;
 	this->totalTimeServed = 0;
@@ -124,16 +123,6 @@ int Dungeon::getTotalTimeServed()
 //{
 //	this->isFull = isFull;
 //}
-
-void Dungeon::setIsAvailable(bool isAvailable)
-{
-	this->isAvailable = isAvailable;
-}
-
-void Dungeon::setIsActive(bool isActive)
-{
-	this->isActive = isActive;
-}
 
 //void Dungeon::incrementDungeonParties()
 //{
