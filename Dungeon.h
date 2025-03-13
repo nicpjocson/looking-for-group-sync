@@ -17,8 +17,6 @@ public:
 	void dungeonCleared(int clearTime);
 	int randomClearTime();
 
-	//void incrementDungeonParties();
-
 	// Getters
 	int getId();
 	bool getIsRunning();
@@ -29,12 +27,8 @@ public:
 
 private:
 	int id;
-
 	bool isRunning = false;
-
 	int dungeonParties;
-
-	//bool isFull;
 
 	// To display
 	bool isActive;
