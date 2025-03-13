@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+#include "QueueManager.h"
 
 // DOUBLE CHECK
 Dungeon::Dungeon(int id)

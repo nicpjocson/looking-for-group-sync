@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <thread>
+#include <mutex>
 
 #include "config.h"
 #include "Party.h"
@@ -21,16 +22,19 @@ public:
 	int getId();
 	bool getIsRunning();
 
+	// To use for displaying after execution
 	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();
 
 private:
+	std::mutex guard;
+
 	int id;
 	bool isRunning = false;
-	int dungeonParties;
+	std::vector<Party*> dungeonParties;
 
-	// To display
+	// To be displayed after execution
 	bool isActive;
 	int partiesServed;
 	int totalTimeServed;
