@@ -133,6 +133,7 @@
     <ClCompile Include="Healer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Party.cpp" />
+    <ClCompile Include="QueueManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Tank.cpp" />
   </ItemGroup>
@@ -143,6 +144,7 @@
     <ClInclude Include="Dungeon.h" />
     <ClInclude Include="Healer.h" />
     <ClInclude Include="Party.h" />
+    <ClInclude Include="QueueManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Tank.h" />
   </ItemGroup>
