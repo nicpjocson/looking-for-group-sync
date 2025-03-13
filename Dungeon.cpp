@@ -77,21 +77,14 @@ int Dungeon::randomClearTime()
 	Getters
 
 */
-bool Dungeon::getIsRunning()
 int Dungeon::getId()
 {
-	return this->isRunning;
 	return this->id;
 }
 
-//bool Dungeon::getIsFull()
-//{
-//	return this->isFull;
-//}
-
-bool Dungeon::getIsAvailable()
+bool Dungeon::getIsRunning()
 {
-	return this->isAvailable;
+	return this->isRunning;
 }
 
 /*
@@ -119,9 +112,9 @@ int Dungeon::getTotalTimeServed()
 	Setters
 
 */
-//void Dungeon::setIsFull(bool isFull)
+//void Dungeon::setIsActive(bool isActive)
 //{
-//	this->isFull = isFull;
+//	this->isActive = isActive;
 //}
 
 //void Dungeon::incrementDungeonParties()
