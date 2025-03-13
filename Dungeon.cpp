@@ -4,7 +4,7 @@
 Dungeon::Dungeon(int id)
 {
 	this->id = id;
-	this->dungeonParties = 0;
+	this->dungeonParties = {};
 	this->isActive = false;
 	this->partiesServed = 0;
 	this->totalTimeServed = 0;
@@ -25,15 +25,15 @@ void Dungeon::startDungeon()
 void Dungeon::searchForParties()
 {
 	// Dungeon is not full
-	// REFACTOR??
-	while (/*!this->isFull*/this->dungeonParties < MAX_PARTIES)
+	while (this->dungeonParties.size() < MAX_PARTIES) // FIX???
 	{
-		this->dungeonParties++;
-		//this->partyQueue.pop();
+		// Add a party
+		Party* newParty = QueueManager::getInstance()->getParty();
+		this->dungeonParties.push_back(newParty);
 	}
 
 	// When full
-	if (/*this->isFull*/this->dungeonParties == MAX_PARTIES) {
+	if (this->dungeonParties.size() == MAX_PARTIES) {
 		this->clearDungeon();
 	}
 }
@@ -42,13 +42,10 @@ void Dungeon::searchForParties()
 void Dungeon::clearDungeon()
 {
 	int clearTime = randomClearTime();
-	std::cout << "parties in dungeon: " << this->dungeonParties << std::endl;
+	std::cout << "parties in dungeon: " << this->dungeonParties.size() << std::endl;
 	// Simulate clear
-	std::this_thread::sleep_for(std::chrono::seconds(10/*clearTime*/));
-	// !! CHECKPOINT: STUCK HERE????
-	// ???? CHECKPOINT: NEVER PRINTS
+	std::this_thread::sleep_for(std::chrono::seconds(2/*clearTime*/));
 	std::cout << "clearing dungeon..." << this->id << std::endl;
-	// !! DOUBLE CHECK: verify if should call here
 	this->dungeonCleared(clearTime);
 }
 
@@ -56,11 +53,11 @@ void Dungeon::clearDungeon()
 void Dungeon::dungeonCleared(int clearTime)
 {
 	this->isActive = false;
-	this->partiesServed += this->dungeonParties;
+	this->partiesServed += this->dungeonParties.size();
 	this->totalTimeServed += clearTime;
 
 	// "Empty" dungeon
-	this->dungeonParties = 0;
+	this->dungeonParties = {};
 	this->isRunning = false;
 	// CHECKPOINT: NEVER PRINTS
 	std::cout << "cleared dungeon" << this->id << std::endl;
