@@ -8,6 +8,15 @@ Dungeon::Dungeon(int id)
 	this->isActive = false;
 	this->partiesServed = 0;
 	this->totalTimeServed = 0;
+int Dungeon::randomClearTime()
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> distr(MIN_TIME, MAX_TIME);
+	
+	return distr(gen);
+}
+
 /*
 
 	Getters
