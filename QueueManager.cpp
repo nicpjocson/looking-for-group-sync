@@ -48,10 +48,33 @@ void QueueManager::createParties()
     Getters
 
 */
+unsigned int QueueManager::getPartiesInQueue()
+{
+    return this->partiesInQueue;
+}
+
+unsigned int QueueManager::getLeftoverTanks()
+{
+    return this->leftoverTanks;
+}
+
+unsigned int QueueManager::getLeftoverHealers()
+{
+    return this->leftoverHealers;
+}
+
+unsigned int QueueManager::getLeftoverDPS()
+{
+    return this->leftoverDPS;
+}
 
 /*
 
     Other
 
 */
+void QueueManager::decrementPartiesInQueue()
+{
+    this->partiesInQueue--;
+}
 

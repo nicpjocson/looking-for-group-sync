@@ -13,6 +13,15 @@ public:
 
     void createParties();
 
+    // Getters
+    unsigned int getPartiesInQueue();
+    unsigned int getLeftoverTanks();
+    unsigned int getLeftoverHealers();
+    unsigned int getLeftoverDPS();
+
+    // Other
+    void decrementPartiesInQueue();
+
 private:
     static QueueManager* P_SHARED_INSTANCE;
 
