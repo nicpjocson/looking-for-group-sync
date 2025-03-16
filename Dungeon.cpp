@@ -27,7 +27,7 @@ void Dungeon::startDungeon()
 
 	this->isActive = false;
 	this->partiesServed += this->dungeonParties;
-	this->totalTimeServed += clearTime
+	this->totalTimeServed += clearTime;
 }
 
 int Dungeon::randomClearTime()
