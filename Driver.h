@@ -25,10 +25,6 @@ private:
 
 	std::vector<Dungeon*> dungeons;
 
-	int leftoverTanks = 0;
-	int leftoverHealers = 0;
-	int leftoverDPS = 0;
-
 	void createDungeons();
 };
 

@@ -32,7 +32,7 @@ void Driver::run()
         //}
     }
 
-    //this->waitForThreadsToFinish();
+    this->waitForThreadsToFinish();
     this->displaySummary();
 }
 
@@ -62,29 +62,33 @@ void Driver::displaySummary()
     std::cout << "==================================================" << std::endl;
     std::cout << "SUMMARY" << std::endl;
     std::cout << "==================================================" << std::endl;
-    //this->displayAllInstances();
+    this->displayAllInstances();
     std::cout << "--------------------------------------------------" << std::endl;
     std::cout << "LEFTOVER PLAYERS" << std::endl;
-    //this->displayLeftoverPlayers();
+    this->displayLeftoverPlayers();
 }
 
 void Driver::displayAllInstances() 
 {
-    //// For all available dungeons
-    //for (Dungeon* dungeon : this->dungeons)
-    //{
-    //    std::cout << "DUNGEON " << dungeon->getId() << std::endl;
-    //    std::cout << "Status: " << this->getStatus(dungeon->getIsActive()) << std::endl;
-    //    std::cout << "Parties served: " << dungeon->getPartiesServed() << std::endl;
-    //    std::cout << "Total time served: " << dungeon->getTotalTimeServed() << std::endl;
-    //}
+    // For all available dungeons
+    for (Dungeon* dungeon : this->dungeons)
+    {
+        std::cout << "DUNGEON " << dungeon->getId() << std::endl;
+        std::cout << "Status: " << this->getStatus(dungeon->getIsActive()) << std::endl;
+        std::cout << "Parties served: " << dungeon->getPartiesServed() << std::endl;
+        std::cout << "Total time served: " << dungeon->getTotalTimeServed() << std::endl;
+    }
 }
 
 void Driver::displayLeftoverPlayers()
 {
-    //std::cout << "Leftover Tanks: " << this->leftoverTanks << std::endl;
-    //std::cout << "Leftover Healers: " << this->leftoverHealers << std::endl;
-    //std::cout << "Leftover DPS: " << this->leftoverDPS << std::endl;
+    unsigned int leftoverTanks = QueueManager::getInstance()->getLeftoverTanks();
+    unsigned int leftoverHealers = QueueManager::getInstance()->getLeftoverHealers();
+    unsigned int leftoverDPS = QueueManager::getInstance()->getLeftoverDPS();
+
+    std::cout << "Leftover Tanks: " << leftoverTanks << std::endl;
+    std::cout << "Leftover Healers: " << leftoverHealers << std::endl;
+    std::cout << "Leftover DPS: " << leftoverDPS << std::endl;
 }
 
 String Driver::getStatus(bool isActive) 
