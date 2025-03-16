@@ -5,7 +5,7 @@
 Dungeon::Dungeon(int id)
 {
 	this->id = id;
-	this->dungeonParties = {};
+	this->dungeonParties = 0;
 	this->isActive = false;
 	this->partiesServed = 0;
 	this->totalTimeServed = 0;

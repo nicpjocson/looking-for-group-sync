@@ -11,15 +11,15 @@ class QueueManager
 public:
     static QueueManager* getInstance();
 
-    std::queue<Party*> getPartyQueue();
-    std::queue<Tank*> getTankQueue();
-    std::queue<Healer*> getHealerQueue();
-    std::queue<DPS*> getDPSQueue();
+    //std::queue<Party*> getPartyQueue();
+    //std::queue<Tank*> getTankQueue();
+    //std::queue<Healer*> getHealerQueue();
+    //std::queue<DPS*> getDPSQueue();
 
-    Party* getParty();
-    Party* getFrontPartyQueue();
+    //Party* getParty();
+    //Party* getFrontPartyQueue();
 
-    void initialize();
+    //void initialize();
     void createParties();
 
 private:
@@ -32,17 +32,22 @@ private:
 
     std::mutex guard;
 
-    std::queue<Party*> partyQueue;
-    std::queue<Tank*> tankQueue;
-    std::queue<Healer*> healerQueue;
-    std::queue<DPS*> dpsQueue;
+    //std::queue<Party*> partyQueue;
+    //std::queue<Tank*> tankQueue;
+    //std::queue<Healer*> healerQueue;
+    //std::queue<DPS*> dpsQueue;
 
-    int leftoverTanks;
-    int leftoverHealers;
-    int leftoverDPS;
+    unsigned int partiesInQueue = 0;
+    unsigned int tanksInQueue = 0;
+    unsigned int healersInQueue = 0;
+    unsigned int dpsInQueue = 0;
 
-    bool canCreateParty();
-    Party* createParty();
-    void handleLeftoverPlayers();
+    unsigned int leftoverTanks = 0;
+    unsigned int leftoverHealers = 0;
+    unsigned int leftoverDPS = 0;
+
+    //bool canCreateParty();
+    //Party* createParty();
+    //void handleLeftoverPlayers();
 };
 

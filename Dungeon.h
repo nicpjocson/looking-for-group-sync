@@ -32,7 +32,8 @@ private:
 
 	int id;
 	bool isRunning = false;
-	std::vector<Party*> dungeonParties;
+	//std::vector<Party*> dungeonParties;
+	int dungeonParties;
 
 	// To be displayed after execution
 	bool isActive;
