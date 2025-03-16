@@ -20,7 +20,7 @@ public:
     unsigned int getLeftoverDPS();
 
     // Other
-    void decrementPartiesInQueue();
+    void decreasePartiesInQueue(int numParties);
 
 private:
     static QueueManager* P_SHARED_INSTANCE;

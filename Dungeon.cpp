@@ -6,24 +6,24 @@ Dungeon::Dungeon(int id)
 	this->id = id;
 }
 
-void Dungeon::startDungeon() 
+void Dungeon::startDungeon(int numParties)
 {
 	//this->isRunning = true;
 	//std::thread thread(&Dungeon::searchForParties, this);
 	//thread.detach();
 
-	this->dungeonParties = 0;
+	this->dungeonParties = numParties;
 	this->isActive = true;
 
 	//int clearTime = randomClearTime();
 	int clearTime = 2;
 
-	std::cout << "dungeon started" << std::endl;
+	std::cout << "parties in dungeon " << this->dungeonParties << std::endl;
 
 	// Simulate dungeon clearing with sleep
 	std::this_thread::sleep_for(std::chrono::seconds(clearTime));
 
-	std::cout << "dungeon cleared" << std::endl;
+	std::cout << "dungeon cleared in " << clearTime << std::endl;
 
 	this->isActive = false;
 	this->partiesServed += this->dungeonParties;

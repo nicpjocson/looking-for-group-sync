@@ -24,14 +24,22 @@ void Driver::run()
     {
         for (Dungeon* dungeon : this->dungeons)
         {
-            if (QueueManager::getInstance()->getPartiesInQueue() > 0)
+            int numParties = QueueManager::getInstance()->getPartiesInQueue();
+
+            if (numParties > 0)
             {
                 std::cout << "enter lop" << std::endl;
-                dungeon->startDungeon();
+
+                int assignedParties = std::min(numParties, MAX_PARTIES);
+
+                dungeon->startDungeon(assignedParties);
+                
                 std::cout << "BEFORE decrement " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
-                QueueManager::getInstance()->decrementPartiesInQueue();
+                QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
                 std::cout << "AFTER decrement " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
+                
                 // Stop program when all parties are assinged (i.e., no more parties in queue)
+                // TODO: make separate func?
                 if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
                     this->isRunning = false;
                     break;

@@ -73,8 +73,9 @@ unsigned int QueueManager::getLeftoverDPS()
     Other
 
 */
-void QueueManager::decrementPartiesInQueue()
+// TODO: add validation?
+void QueueManager::decreasePartiesInQueue(int numParties)
 {
-    this->partiesInQueue--;
+    this->partiesInQueue -= numParties;
 }
 

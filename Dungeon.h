@@ -12,7 +12,7 @@ class Dungeon
 public:
 	Dungeon(int id);
 
-	void startDungeon();
+	void startDungeon(int numParties);
 	//void searchForParties();
 	//void clearDungeon();
 	//void dungeonCleared(int clearTime);
