@@ -127,26 +127,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DPS.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Dungeon.cpp" />
-    <ClCompile Include="Healer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Party.cpp" />
     <ClCompile Include="QueueManager.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Tank.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
-    <ClInclude Include="DPS.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="Dungeon.h" />
-    <ClInclude Include="Healer.h" />
     <ClInclude Include="Party.h" />
     <ClInclude Include="QueueManager.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Tank.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
