@@ -30,12 +30,13 @@ private:
 
 	int id;
 	bool isRunning = false;
-	//std::vector<Party*> dungeonParties;
-	int dungeonParties;
+	int dungeonParties = 0;
 
 	// To be displayed after execution
-	bool isActive;
-	int partiesServed;
-	int totalTimeServed;
+	bool isActive = false;
+	int partiesServed = 0;
+	int totalTimeServed = 0;
+
+	int randomClearTime();
 };
 
