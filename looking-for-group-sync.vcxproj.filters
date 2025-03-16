@@ -15,25 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DPS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Driver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dungeon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Healer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tank.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Party.cpp">
@@ -44,22 +32,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DPS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dungeon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Healer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tank.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="config.h">
