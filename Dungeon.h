@@ -20,9 +20,7 @@ public:
 
 	// Getters
 	int getId();
-	bool getIsRunning();
-
-	// To use for displaying after execution
+	//bool getIsRunning();
 	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();

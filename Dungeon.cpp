@@ -8,6 +8,34 @@ Dungeon::Dungeon(int id)
 	this->isActive = false;
 	this->partiesServed = 0;
 	this->totalTimeServed = 0;
+/*
+
+	Getters
+
+*/
+int Dungeon::getId()
+{
+	return this->id;
+}
+
+/*
+	Dungeon Status
+	* ACTIVE: Returns true if dungeon has at least one party.
+	* EMPTY: Returns false, otherwise.
+*/
+bool Dungeon::getIsActive()
+{
+	return this->isActive;
+}
+
+int Dungeon::getPartiesServed()
+{
+	return this->partiesServed;
+}
+
+int Dungeon::getTotalTimeServed()
+{
+	return this->totalTimeServed;
 }
 
 //// !! used to be in Driver class
