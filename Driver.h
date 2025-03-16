@@ -28,5 +28,7 @@ private:
 	int leftoverTanks = 0;
 	int leftoverHealers = 0;
 	int leftoverDPS = 0;
+
+	void createDungeons();
 };
 
