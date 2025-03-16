@@ -3,6 +3,6 @@
 int main() {
     Driver driver;
     driver.initialize();
-    //driver.run();
+    driver.run();
 }
 
