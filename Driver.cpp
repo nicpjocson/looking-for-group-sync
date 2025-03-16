@@ -22,6 +22,23 @@ void Driver::run()
 
     while (isRunning)
     {
+        for (Dungeon* dungeon : this->dungeons)
+        {
+            if (QueueManager::getInstance()->getPartiesInQueue() > 0)
+            {
+                std::cout << "enter lop" << std::endl;
+                dungeon->startDungeon();
+                std::cout << "BEFORE decrement " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
+                QueueManager::getInstance()->decrementPartiesInQueue();
+                std::cout << "AFTER decrement " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
+                // Stop program when all parties are assinged (i.e., no more parties in queue)
+                if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
+                    this->isRunning = false;
+                    break;
+                }
+            }
+        }
+
         //// For each dungeon, search for parties
         //for (Dungeon* dungeon : this->dungeons) {
 

@@ -13,10 +13,10 @@ public:
 	Dungeon(int id);
 
 	void startDungeon();
-	void searchForParties();
-	void clearDungeon();
-	void dungeonCleared(int clearTime);
-	int randomClearTime();
+	//void searchForParties();
+	//void clearDungeon();
+	//void dungeonCleared(int clearTime);
+	//int randomClearTime();
 
 	// Getters
 	int getId();

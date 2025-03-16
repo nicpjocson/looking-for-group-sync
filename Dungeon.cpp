@@ -4,10 +4,32 @@
 Dungeon::Dungeon(int id)
 {
 	this->id = id;
+}
+
+void Dungeon::startDungeon() 
+{
+	//this->isRunning = true;
+	//std::thread thread(&Dungeon::searchForParties, this);
+	//thread.detach();
+
 	this->dungeonParties = 0;
+	this->isActive = true;
+
+	//int clearTime = randomClearTime();
+	int clearTime = 2;
+
+	std::cout << "dungeon started" << std::endl;
+
+	// Simulate dungeon clearing with sleep
+	std::this_thread::sleep_for(std::chrono::seconds(clearTime));
+
+	std::cout << "dungeon cleared" << std::endl;
+
 	this->isActive = false;
-	this->partiesServed = 0;
-	this->totalTimeServed = 0;
+	this->partiesServed += this->dungeonParties;
+	this->totalTimeServed += clearTime
+}
+
 int Dungeon::randomClearTime()
 {
 	std::random_device rd;
