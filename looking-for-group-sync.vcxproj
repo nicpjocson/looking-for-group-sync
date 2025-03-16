@@ -130,14 +130,12 @@
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Party.cpp" />
     <ClCompile Include="QueueManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="Driver.h" />
     <ClInclude Include="Dungeon.h" />
-    <ClInclude Include="Party.h" />
     <ClInclude Include="QueueManager.h" />
   </ItemGroup>
   <ItemGroup>
