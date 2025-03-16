@@ -1,7 +1,6 @@
 #include "Dungeon.h"
-#include "QueueManager.h"
+//#include "QueueManager.h"
 
-// DOUBLE CHECK
 Dungeon::Dungeon(int id)
 {
 	this->id = id;
@@ -11,16 +10,6 @@ Dungeon::Dungeon(int id)
 	this->totalTimeServed = 0;
 }
 
-//void Dungeon::startDungeon() 
-//{
-//	this->isRunning = true;
-//	std::thread thread(&Dungeon::searchForParties, this);
-//	thread.detach();
-//
-//	// DEBUG
-//	std::cout << "started dungeon/thread " << this->id << std::endl;
-//}
-//
 //// !! used to be in Driver class
 //// !! verify if should keep here
 //void Dungeon::searchForParties()
@@ -74,38 +63,10 @@ Dungeon::Dungeon(int id)
 //	return rand() % MAX_TIME - MIN_TIME;
 //}
 //
-///*
-//	
-//	Getters
-//
-//*/
-//int Dungeon::getId()
-//{
-//	return this->id;
-//}
-//
+
 //bool Dungeon::getIsRunning()
 //{
 //	return this->isRunning;
 //}
 //
-///*
-//	Dungeon Status
-//	* ACTIVE: Returns true if dungeon has at least one party.
-//	* EMPTY: Returns false, otherwise.
-//*/
-//bool Dungeon::getIsActive()
-//{
-//	return this->isActive;
-//}
-//
-//int Dungeon::getPartiesServed()
-//{
-//	return this->partiesServed;
-//}
-//
-//int Dungeon::getTotalTimeServed()
-//{
-//	return this->totalTimeServed;
-//}
 
