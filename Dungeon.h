@@ -12,7 +12,8 @@ class Dungeon
 public:
 	Dungeon(int id);
 
-	void startDungeon(int numParties);
+	void startDungeon();
+	void run(int numParties);
 
 	// Getters
 	int getId();
