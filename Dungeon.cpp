@@ -6,31 +6,31 @@ Dungeon::Dungeon(int id)
 	this->id = id;
 }
 
-void Dungeon::startDungeon()
+void Dungeon::startDungeon(int assignedParties)
 {
+	this->dungeonParties = assignedParties;
+
 	std::thread thread(&Dungeon::run, this);
 	thread.detach();
 }
 
-void Dungeon::run(int numParties)
+void Dungeon::run()
 {
-	//while(QueueManager::getInstance()->getPartiesInQueue() > 0) {}
-	//this->dungeonParties = numParties;
-	//this->isActive = true;
+	int clearTime = randomClearTime();
 
-	////int clearTime = randomClearTime();
-	//int clearTime = 2;
+	this->isActive = true; // idk how this works
 
-	//std::cout << "parties in dungeon " << this->dungeonParties << std::endl;
+	std::cout << "dungeonParties " << this->dungeonParties << std::endl;
 
-	//// Simulate dungeon clearing with sleep
-	//std::this_thread::sleep_for(std::chrono::seconds(clearTime));
+	// Simulate dungeon clearing with sleep
+	std::this_thread::sleep_for(std::chrono::seconds(clearTime));
 
-	//std::cout << "dungeon cleared in " << clearTime << std::endl;
+	std::cout << "dungeon cleared in " << clearTime << std::endl;
 
-	//this->isActive = false;
-	//this->partiesServed += this->dungeonParties;
-	//this->totalTimeServed += clearTime;
+	this->isActive = false; // idk how this works
+	this->partiesServed += this->dungeonParties;
+	this->totalTimeServed += clearTime;
+	this->dungeonParties = 0;
 }
 
 int Dungeon::randomClearTime()

@@ -54,41 +54,44 @@ void Driver::createDungeons()
 
 void Driver::run()
 {
-    this->isRunning = true;
+    int numParties;
+    int assignedParties;
 
-    // Program is running
+    this->isRunning = true;
     while (isRunning)
     {
         for (Dungeon* dungeon : this->dungeons)
         {
-            //int numParties = QueueManager::getInstance()->getPartiesInQueue();
+            numParties = QueueManager::getInstance()->getPartiesInQueue();
+            assignedParties = 0;
 
-            //if (numParties > 0)
-            //{
-            //    std::cout << "enter lop" << std::endl;
+            if (numParties > 0)
+            {
+                assignedParties = MAX_PARTIES;
 
-            //    int assignedParties = std::min(numParties, MAX_PARTIES);
+                if (numParties < MAX_PARTIES) {
+                    assignedParties = numParties;
+                }
 
-            //    dungeon->startDungeon(assignedParties);
-            //    
-            //    QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
-            //    std::cout << "after clear " << QueueManager::getInstance()->getPartiesInQueue() << std::endl << std::endl;
-            //    
-            //    checkProgramTermination();
-            //}
+                std::cout << "assignedParties " << assignedParties << std::endl;
+                
+                dungeon->startDungeon(assignedParties);
+                QueueManager::getInstance()->decreasePartiesInQueue(assignedParties); // NEED MUTEX
+
+                std::cout << "after decrease " << assignedParties << std::endl;
+
+                // Stop program when all parties are assinged (i.e., no more parties in queue)
+                if (numParties == 0)
+                {
+                    this->isRunning = false;
+                    break;
+                }
+            }
         }
     }
 
     this->waitForThreadsToFinish();
     this->displaySummary();
-}
-
-void Driver::checkProgramTermination()
-{
-    // Stop program when all parties are assinged (i.e., no more parties in queue)
-    if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
-        this->isRunning = false;
-    }
 }
 
 void Driver::waitForThreadsToFinish()

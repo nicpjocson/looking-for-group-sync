@@ -25,9 +25,8 @@ private:
 	bool isRunning = false;
 
 	std::vector<Dungeon*> dungeons;
-
 	void createDungeons();
-	void checkProgramTermination();
+
 	bool checkBoundary(const String& param, unsigned int value);
 };
 
