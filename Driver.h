@@ -26,5 +26,6 @@ private:
 	std::vector<Dungeon*> dungeons;
 
 	void createDungeons();
+	void checkProgramTermination();
 };
 

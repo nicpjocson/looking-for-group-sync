@@ -59,6 +59,14 @@ void Driver::run()
     this->displaySummary();
 }
 
+void Driver::checkProgramTermination()
+{
+    // Stop program when all parties are assinged (i.e., no more parties in queue)
+    if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
+        this->isRunning = false;
+    }
+}
+
 void Driver::waitForThreadsToFinish()
 {
     bool standby = true;
