@@ -16,7 +16,7 @@ public:
 
 	// Getters
 	int getId();
-	//bool getIsRunning();
+	bool getIsRunning();
 	bool getIsActive();
 	int getPartiesServed();
 	int getTotalTimeServed();

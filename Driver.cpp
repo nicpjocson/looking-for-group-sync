@@ -61,17 +61,17 @@ void Driver::run()
 
 void Driver::waitForThreadsToFinish()
 {
-    //bool standby = true;
+    bool standby = true;
 
-    //while (standby) {
-    //    standby = false;
-    //    for (Dungeon* dungeon : this->dungeons) {
-    //        if (dungeon->getIsRunning()) {
-    //            standby = true;
-    //            break;
-    //        }
-    //    }
-    //}
+    while (standby) {
+        standby = false;
+        for (Dungeon* dungeon : this->dungeons) {
+            if (dungeon->getIsRunning()) {
+                standby = true;
+                break;
+            }
+        }
+    }
 }
 
 /*
@@ -98,7 +98,7 @@ void Driver::displayAllInstances()
         std::cout << "DUNGEON " << dungeon->getId() << std::endl;
         std::cout << "Status: " << this->getStatus(dungeon->getIsActive()) << std::endl;
         std::cout << "Parties served: " << dungeon->getPartiesServed() << std::endl;
-        std::cout << "Total time served: " << dungeon->getTotalTimeServed() << std::endl;
+        std::cout << "Total time served: " << dungeon->getTotalTimeServed() << std::endl << std::endl;
     }
 }
 
