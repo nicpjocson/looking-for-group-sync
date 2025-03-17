@@ -12,13 +12,13 @@
         (6) MAX_TIME       - max. time before an instance is finished
 */
 
-const int MAX_INSTANCES = 10;
-const int TANK_PLAYERS = 10;
-const int HEALER_PLAYERS = 10;
-const int DPS_PLAYERS = 30;
-const int MIN_TIME = 5;
-const int MAX_TIME = 15;
+const unsigned int MAX_INSTANCES = 4;
+const unsigned int TANK_PLAYERS = 17;
+const unsigned int HEALER_PLAYERS = 17;
+const unsigned int DPS_PLAYERS = 51;
+const unsigned int MIN_TIME = 1;
+const unsigned int MAX_TIME = 5;
 
-const int MAX_DUNGEONS = MAX_INSTANCES;
-const int MAX_PARTIES = MAX_INSTANCES;
+const unsigned int MAX_DUNGEONS = MAX_INSTANCES;
+const unsigned int MAX_PARTIES = MAX_INSTANCES;
 
