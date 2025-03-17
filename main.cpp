@@ -1,8 +1,14 @@
 #include "Driver.h"
 
-int main() {
+int main()
+{
     Driver driver;
-    driver.initialize();
-    driver.run();
+    bool foo = driver.inputValidation();
+
+    if (foo)
+    {
+        driver.initialize();
+        driver.run();
+    }
 }
 

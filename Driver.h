@@ -11,6 +11,7 @@ typedef std::string String;
 class Driver
 {
 public:
+	bool inputValidation();
 	void initialize();
 	void run();
 	void waitForThreadsToFinish();
@@ -27,5 +28,6 @@ private:
 
 	void createDungeons();
 	void checkProgramTermination();
+	bool checkBoundary(const String& param, unsigned int value);
 };
 

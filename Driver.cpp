@@ -1,5 +1,43 @@
 #include "Driver.h"
 
+// CHECKPOINT: program frozen if any value = -1 so idek if this function is useful at all
+bool Driver::inputValidation()
+{
+    bool valid = true;
+
+    valid &= this->checkBoundary("MAX_INSTANCES", MAX_INSTANCES);
+    valid &= this->checkBoundary("TANK_PLAYERS", TANK_PLAYERS);
+    valid &= this->checkBoundary("HEALER_PLAYERS", HEALER_PLAYERS);
+    valid &= this->checkBoundary("DPS_PLAYERS", DPS_PLAYERS);
+    valid &= this->checkBoundary("MIN_TIME", MIN_TIME);
+    valid &= this->checkBoundary("MAX_TIME", MAX_TIME);
+
+    return valid;
+}
+
+bool Driver::checkBoundary(const String& param, unsigned int value)
+{
+    // Unsigned integer
+    unsigned int min = 0; // Minimum possible value
+    // !! HAS WARNING
+    unsigned int max = std::numeric_limits<unsigned int>::max(); // Max possible value
+
+    std::cout << "checking " << param << " with expected range: " << min << ", " << max << std::endl;
+
+    if (value < min) {
+        std::cerr << "Error: " << param << " with value " << value << " is invalid. Minimum posssible value: " << std::endl;
+        return false;
+    }
+
+    if (value > max) {
+        std::cerr << "Error: " << param << " with value " << value << " is invalid. Minimum possible value: " << std::endl;
+        return false;
+    }
+
+    std::cout << std::endl;
+    return true;
+}
+
 void Driver::initialize()
 {
     QueueManager::getInstance()->createParties();
