@@ -2,14 +2,12 @@
 
 void Driver::initialize()
 {
-    //QueueManager::getInstance()->initialize();
     QueueManager::getInstance()->createParties();
     this->createDungeons();
 }
 
 void Driver::createDungeons()
 {
-    // Create dungeons/threads
     for (int i = 0; i < MAX_DUNGEONS; i++) {
         Dungeon* newDungeon = new Dungeon(i);
         this->dungeons.push_back(newDungeon);
@@ -61,7 +59,6 @@ void Driver::run()
     this->displaySummary();
 }
 
-// DOUBLE CHECK
 void Driver::waitForThreadsToFinish()
 {
     //bool standby = true;
