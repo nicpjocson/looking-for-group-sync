@@ -18,41 +18,27 @@ void Driver::run()
 {
     this->isRunning = true;
 
+    // Program is running
     while (isRunning)
     {
         for (Dungeon* dungeon : this->dungeons)
         {
-            int numParties = QueueManager::getInstance()->getPartiesInQueue();
+            //int numParties = QueueManager::getInstance()->getPartiesInQueue();
 
-            if (numParties > 0)
-            {
-                std::cout << "enter lop" << std::endl;
+            //if (numParties > 0)
+            //{
+            //    std::cout << "enter lop" << std::endl;
 
-                int assignedParties = std::min(numParties, MAX_PARTIES);
+            //    int assignedParties = std::min(numParties, MAX_PARTIES);
 
-                dungeon->startDungeon(assignedParties);
-                
-                std::cout << "BEFORE decrement " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
-                QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
-                std::cout << "AFTER decrement " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
-                
-                // Stop program when all parties are assinged (i.e., no more parties in queue)
-                // TODO: make separate func?
-                if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
-                    this->isRunning = false;
-                    break;
-                }
-            }
+            //    dungeon->startDungeon(assignedParties);
+            //    
+            //    QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
+            //    std::cout << "after clear " << QueueManager::getInstance()->getPartiesInQueue() << std::endl << std::endl;
+            //    
+            //    checkProgramTermination();
+            //}
         }
-
-        //// For each dungeon, search for parties
-        //for (Dungeon* dungeon : this->dungeons) {
-
-        //    // At least one party looking for dungeon
-        //    if (QueueManager::getInstance()->getPartyQueue().size() > 0) {
-        //        dungeon->startDungeon();
-        //    }
-        //}
     }
 
     this->waitForThreadsToFinish();
