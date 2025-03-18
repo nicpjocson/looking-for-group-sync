@@ -77,7 +77,7 @@ void Driver::run()
                 QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
                 //std::cout << "driver: after decrease " << QueueManager::getInstance()->getPartiesInQueue() << std::endl
                 // Stop program when all parties are assinged (i.e., no more parties in queue)
-                if (numParties == 0)
+                if (QueueManager::getInstance()->getPartiesInQueue() == 0) // NOT GOING IN HERE
                 {
                     this->isRunning = false;
                     break;
