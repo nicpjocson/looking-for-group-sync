@@ -1,6 +1,6 @@
 #include "Driver.h"
 
-// CHECKPOINT: program frozen if any value = -1 so idek if this function is useful at all
+// TODO: program frozen if any value = -1 so idek if this function is useful at all
 bool Driver::inputValidation()
 {
     bool valid = true;
@@ -58,7 +58,7 @@ void Driver::run()
     int assignedParties;
 
     this->isRunning = true;
-    while (isRunning)
+    while (this->isRunning)
     {
         for (Dungeon* dungeon : this->dungeons)
         {
@@ -72,14 +72,10 @@ void Driver::run()
                 if (numParties < MAX_PARTIES) {
                     assignedParties = numParties;
                 }
-
-                std::cout << "assignedParties " << assignedParties << std::endl;
-                
+                //std::cout << "driver: assignedParties " << assignedParties << std::endl;
                 dungeon->startDungeon(assignedParties);
-                QueueManager::getInstance()->decreasePartiesInQueue(assignedParties); // NEED MUTEX
-
-                std::cout << "after decrease " << assignedParties << std::endl;
-
+                QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
+                //std::cout << "driver: after decrease " << QueueManager::getInstance()->getPartiesInQueue() << std::endl
                 // Stop program when all parties are assinged (i.e., no more parties in queue)
                 if (numParties == 0)
                 {
