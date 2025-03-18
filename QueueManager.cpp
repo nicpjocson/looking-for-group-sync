@@ -73,9 +73,9 @@ unsigned int QueueManager::getLeftoverDPS()
     Other
 
 */
-// TODO: add validation?
 void QueueManager::decreasePartiesInQueue(int numParties)
 {
+    std::lock_guard<std::mutex> lock(this->guard);
     this->partiesInQueue -= numParties;
 }
 
