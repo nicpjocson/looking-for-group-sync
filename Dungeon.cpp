@@ -12,6 +12,7 @@ void Dungeon::startDungeon(int assignedParties)
 
 	this->dungeonParties = assignedParties;
 
+	this->isRunning = true;
 	std::thread thread(&Dungeon::run, this);
 	thread.detach();
 }
@@ -31,6 +32,7 @@ void Dungeon::run()
 	this->partiesServed += this->dungeonParties;
 	this->totalTimeServed += clearTime;
 	this->dungeonParties = 0;
+	this->isRunning = false;
 }
 
 int Dungeon::randomClearTime()
