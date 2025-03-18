@@ -3,6 +3,7 @@
 #include <chrono>
 #include <random>
 #include <thread>
+#include <mutex>
 
 #include "config.h"
 
@@ -22,6 +23,8 @@ public:
 	int getTotalTimeServed();
 
 private:
+	std::mutex guard;
+
 	int id;
 	bool isRunning = false;
 	int dungeonParties = 0;

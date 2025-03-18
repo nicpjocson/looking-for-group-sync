@@ -8,6 +8,8 @@ Dungeon::Dungeon(int id)
 
 void Dungeon::startDungeon(int assignedParties)
 {
+	std::lock_guard<std::mutex> lock(this->guard);
+
 	this->dungeonParties = assignedParties;
 
 	std::thread thread(&Dungeon::run, this);
@@ -16,16 +18,14 @@ void Dungeon::startDungeon(int assignedParties)
 
 void Dungeon::run()
 {
+	std::lock_guard<std::mutex> lock(this->guard);
+
 	int clearTime = randomClearTime();
 
-	this->isActive = true; // idk how this works
-
-	std::cout << "dungeonParties " << this->dungeonParties << std::endl;
-
+	this->isActive = true; // idk how this 
+	//std::cout << "dungeon" << this->id << "with parties " << this->dungeonParties << std::endl;
 	// Simulate dungeon clearing with sleep
 	std::this_thread::sleep_for(std::chrono::seconds(clearTime));
-
-	std::cout << "dungeon cleared in " << clearTime << std::endl;
 
 	this->isActive = false; // idk how this works
 	this->partiesServed += this->dungeonParties;
@@ -38,7 +38,7 @@ int Dungeon::randomClearTime()
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> distr(MIN_TIME, MAX_TIME);
-	
+
 	return distr(gen);
 }
 
