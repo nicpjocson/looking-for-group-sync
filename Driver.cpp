@@ -86,7 +86,6 @@ uintList Driver::validateConfig(strList strConfigs)
     return numConfigs;
 }
 
-
 bool Driver::isValid(String param, String value)
 {
     // Check for empty input
@@ -112,7 +111,6 @@ bool Driver::isValid(String param, String value)
         return false;
     }
 
-    std::cout << param << " is valid: " << num << std::endl;
     return true;
 }
 
@@ -158,18 +156,16 @@ void Driver::run()
         {
             numParties = QueueManager::getInstance()->getPartiesInQueue();
             assignedParties = 0;
-            
+
             if (numParties > 0)
             {
                 assignedParties = this->maxParties;
-                if (numParties < this->maxParties) {
-                    assignedParties = numParties;
-                }
+                if (numParties < this->maxParties) assignedParties = numParties;
 
-                dungeon->addParties(assignedParties);
+                dungeon->assignParties(assignedParties);
                 QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
 
-                // Stop program when all parties are assinged (i.e., no more parties in queue)
+                // Stop program when all parties are assigned (i.e., no more parties in queue)
                 if (QueueManager::getInstance()->getPartiesInQueue() == 0)
                 {
                     this->isRunning = false;
@@ -180,7 +176,7 @@ void Driver::run()
     }
 
     this->waitForThreadsToFinish();
-    this->displaySummary();
+    this->displaySummary();   
 }
 
 void Driver::waitForThreadsToFinish()
@@ -228,9 +224,9 @@ void Driver::displayAllInstances()
 
 void Driver::displayLeftoverPlayers()
 {
-    unsigned int leftoverTanks = QueueManager::getInstance()->getLeftoverTanks();
-    unsigned int leftoverHealers = QueueManager::getInstance()->getLeftoverHealers();
-    unsigned int leftoverDPS = QueueManager::getInstance()->getLeftoverDPS();
+    unsigned int leftoverTanks = QueueManager::getInstance()->getTanksInQueue();
+    unsigned int leftoverHealers = QueueManager::getInstance()->getHealersInQueue();
+    unsigned int leftoverDPS = QueueManager::getInstance()->getDPSInQueue();
 
     std::cout << "Leftover Tanks: " << leftoverTanks << std::endl;
     std::cout << "Leftover Healers: " << leftoverHealers << std::endl;
