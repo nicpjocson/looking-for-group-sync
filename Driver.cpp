@@ -175,6 +175,10 @@ void Driver::run()
         }
     }
 
+    for (Dungeon* dungeon : this->dungeons) {
+        dungeon->stopDungeon();
+    }
+
     this->waitForThreadsToFinish();
     this->displaySummary();   
 }
