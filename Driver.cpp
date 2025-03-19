@@ -1,41 +1,130 @@
 #include "Driver.h"
 
-// TODO: program frozen if any value = -1 so idek if this function is useful at all
-bool Driver::inputValidation()
+/*
+    Configuration-related functions
+*/
+bool Driver::getConfig()
 {
-    bool valid = true;
+    String filename = "config.txt";
+    strList strConfigs = this->readConfig(filename);
 
-    valid &= this->checkBoundary("MAX_INSTANCES", MAX_INSTANCES);
-    valid &= this->checkBoundary("TANK_PLAYERS", TANK_PLAYERS);
-    valid &= this->checkBoundary("HEALER_PLAYERS", HEALER_PLAYERS);
-    valid &= this->checkBoundary("DPS_PLAYERS", DPS_PLAYERS);
-    valid &= this->checkBoundary("MIN_TIME", MIN_TIME);
-    valid &= this->checkBoundary("MAX_TIME", MAX_TIME);
-
-    return valid;
-}
-
-bool Driver::checkBoundary(const String& param, unsigned int value)
-{
-    // Unsigned integer
-    unsigned int min = 0; // Minimum possible value
-    // !! HAS WARNING
-    unsigned int max = std::numeric_limits<unsigned int>::max(); // Max possible value
-
-    std::cout << "checking " << param << " with expected range: " << min << ", " << max << std::endl;
-
-    if (value < min) {
-        std::cerr << "Error: " << param << " with value " << value << " is invalid. Minimum posssible value: " << std::endl;
+    // File is empty or failed to read
+    if (strConfigs.empty()) {
+        std::cerr << "Error: Failed to read config file or it is empty." << std::endl;
         return false;
     }
 
-    if (value > max) {
-        std::cerr << "Error: " << param << " with value " << value << " is invalid. Minimum possible value: " << std::endl;
+    uintList numConfigs = this->validateConfig(strConfigs);
+
+    // Validation failed
+    if (numConfigs.empty()) {
+        std::cerr << "Error: Configuration validation failed." << std::endl;
         return false;
+    }
+
+    this->setParams(numConfigs);
+
+    return true;
+}
+
+strList Driver::readConfig(String filename) {
+    String line, key, value;
+    strList configValues;
+
+    std::ifstream f(filename);
+
+    if (!f.is_open()) {
+        std::cerr << "Error opening the file.";
+        return {};
+    }
+
+    while (getline(f, line)) {
+        std::istringstream iss(line);
+        iss >> key;
+        getline(iss >> std::ws, value);
+
+        if (value.front() == '\"' && value.back() == '\"') {
+            value = value.substr(1, value.length() - 2);
+        }
+        configValues.push_back(value);
+    }
+
+    f.close();
+
+    return configValues;
+}
+
+uintList Driver::validateConfig(strList strConfigs)
+{
+    uintList numConfigs(strConfigs.size(), 0);
+    bool valid = true;
+
+    if (!this->isValid("MAX_INSTANCES", strConfigs[0])) valid = false;
+    else numConfigs[0] = std::stoi(strConfigs[0]);
+
+    if (!this->isValid("TANK_PLAYERS", strConfigs[1])) valid = false;
+    else numConfigs[1] = std::stoi(strConfigs[1]);
+
+    if (!this->isValid("HEALER_PLAYERS", strConfigs[2])) valid = false;
+    else numConfigs[2] = std::stoi(strConfigs[2]);
+
+    if (!this->isValid("DPS_PLAYERS", strConfigs[3])) valid = false;
+    else numConfigs[3] = std::stoi(strConfigs[3]);
+
+    if (!this->isValid("MIN_TIME", strConfigs[4])) valid = false;
+    else numConfigs[4] = std::stoi(strConfigs[4]);
+
+    if (!this->isValid("MAX_TIME", strConfigs[5])) valid = false;
+    else numConfigs[5] = std::stoi(strConfigs[5]);
+
+    if (!valid) {
+        return {};
     }
 
     std::cout << std::endl;
+
+    return numConfigs;
+}
+
+
+bool Driver::isValid(String param, String value)
+{
+    // Check for empty input
+    if (value.empty()) {
+        std::cerr << "Error: " << param << " is empty." << std::endl;
+        return false;
+    }
+
+    // Check for non-integer characters
+    for (char c : value) {
+        if (!isdigit(c)) {
+            std::cerr << "Error: " << param << " contains non-numeric characters." << std::endl;
+            return false;
+        }
+    }
+
+    // Convert String to unsigned int
+    unsigned int num = std::stoi(value);
+
+    // Check exceeding max for unsigned int
+    if (num > std::numeric_limits<unsigned int>::max()) {
+        std::cerr << "Error: " << param << " exceeds the max unsigned int value." << std::endl;
+        return false;
+    }
+
+    std::cout << param << " is valid: " << num << std::endl;
     return true;
+}
+
+void Driver::setParams(uintList parameters)
+{
+    this->maxDungeons = parameters[0];
+    this->maxParties = parameters[0];
+    this->tankPlayers = parameters[1];
+    this->healerPlayers = parameters[2];
+    this->dpsPlayers = parameters[3];
+    this->minTime = parameters[4];
+    this->maxTime = parameters[5];
 }
 
 void Driver::initialize()

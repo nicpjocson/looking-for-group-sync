@@ -1,32 +1,45 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include <string>
+#include <fstream>
+#include <sstream>
 
-#include "config.h"
 #include "QueueManager.h"
 #include "Dungeon.h"
 
 typedef std::string String;
+typedef std::vector<String> strList;
+typedef std::vector<unsigned int> uintList;
 
 class Driver
 {
 public:
-	bool inputValidation();
+	bool getConfig();
 	void initialize();
 	void run();
-	void waitForThreadsToFinish();
-
-	void displaySummary();
-	void displayAllInstances();
-	void displayLeftoverPlayers();
-	String getStatus(bool status);
 
 private:
 	bool isRunning = false;
 
+	// Program parameters
+	unsigned int maxDungeons = 0;   // 0 to max
+	unsigned int maxParties = 0;    // 0 to max
+	unsigned int tankPlayers = 0;   // 0 to max
+	unsigned int healerPlayers = 0; // 0 to max
+	unsigned int dpsPlayers = 0;	// 0 to max
+	unsigned int minTime = 0;		// 0 to maxTime
+	unsigned int maxTime = 0;		// 0 to 15
+
 	std::vector<Dungeon*> dungeons;
 	void createDungeons();
+	void waitForThreadsToFinish();
 
-	bool checkBoundary(const String& param, unsigned int value);
+	// Reading and validating config
+	strList readConfig(String filename);
+	uintList validateConfig(strList parameters);
+	bool isValid(String param, String value);
+	void setParams(uintList parameters);
+
 };
 
