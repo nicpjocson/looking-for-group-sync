@@ -12,6 +12,13 @@ QueueManager* QueueManager::getInstance()
     return P_SHARED_INSTANCE;
 }
 
+void QueueManager::initialize(unsigned int tankPlayers, unsigned int healerPlayers, unsigned int dpsPlayers)
+{
+    this->tanksInQueue = tankPlayers;
+    this->healersInQueue = healerPlayers;
+    this->dpsInQueue = dpsPlayers;
+}
+
 /*
 
     Party-creation-related
@@ -20,12 +27,8 @@ QueueManager* QueueManager::getInstance()
 // Create as many full parties as possible
 void QueueManager::createParties()
 {
-    unsigned int numTanks = TANK_PLAYERS;
-    unsigned int numHealers = HEALER_PLAYERS;
-    unsigned int numDPS = DPS_PLAYERS;
-
     // How many parties can be formed
-    int partyCount = std::min({ numTanks, numHealers, numDPS / 3 });
+    int partyCount = std::min({ this->tanksInQueue, this->healersInQueue, this->dpsInQueue / 3 });
 
     // Add parties to the queue
     for (int i = 0; i < partyCount; i++) {
@@ -33,14 +36,16 @@ void QueueManager::createParties()
     }
 
     // Reduce the available players
-    numTanks -= partyCount;
-    numHealers -= partyCount;
-    numDPS -= partyCount * 3;
+    this->tanksInQueue -= partyCount;
+    this->healersInQueue -= partyCount;
+    this->dpsInQueue -= partyCount * 3;
 
     // Handle leftover players
-    this->leftoverTanks = numTanks;
-    this->leftoverHealers = numHealers;
-    this->leftoverDPS = numDPS;
+    this->leftoverTanks = this->tanksInQueue;
+    this->leftoverHealers = this->healersInQueue;
+    this->leftoverDPS = this->dpsInQueue;
+
+    std::cout << this->partiesInQueue << " parties created" << std::endl;
 }
 
 /*
@@ -50,6 +55,7 @@ void QueueManager::createParties()
 */
 unsigned int QueueManager::getPartiesInQueue()
 {
+    std::lock_guard<std::mutex> lock(this->guard);
     return this->partiesInQueue;
 }
 

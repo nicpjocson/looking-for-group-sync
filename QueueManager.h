@@ -3,12 +3,11 @@
 #include <queue>
 #include <mutex>
 
-#include "config.h"
-
 class QueueManager
 {
 public:
     static QueueManager* getInstance();
+    void initialize(unsigned int tankPlayers, unsigned int healerPlayers, unsigned int dpsPlayers);
 
     void createParties();
 
