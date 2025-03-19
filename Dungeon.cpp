@@ -38,6 +38,10 @@ void Dungeon::clearDungeon()
 		this->updateDungeonStats(clearTime);
 		this->resetDungeon();
 	}
+void Dungeon::stopDungeon()
+{
+	std::lock_guard<std::mutex> lock(this->guard);
+	this->isRunning = false;
 }
 
 void Dungeon::updateDungeonStats(int clearTime)
