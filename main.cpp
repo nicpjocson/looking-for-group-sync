@@ -3,9 +3,10 @@
 int main()
 {
     Driver driver;
-    bool foo = driver.inputValidation();
 
-    if (foo)
+    bool success = driver.getConfig();
+    
+    if (success)
     {
         driver.initialize();
         driver.run();
