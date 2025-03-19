@@ -10,13 +10,12 @@ Dungeon::Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime)
 void Dungeon::startDungeon()
 {
 	std::lock_guard<std::mutex> lock(this->guard);
-	//std::cout << "dungeon " << this->id << std::endl;
 	this->isRunning = true;
 	std::thread thread(&Dungeon::clearDungeon, this);
 	thread.detach();
 }
 
-void Dungeon::addParties(unsigned int assignedParties)
+void Dungeon::assignParties(unsigned int assignedParties)
 {
 	this->dungeonParties = assignedParties;
 	this->isActive = true;
@@ -44,6 +43,8 @@ void Dungeon::updateDungeonStats(int clearTime)
 {
 	this->partiesServed += this->dungeonParties;
 	this->totalTimeServed += clearTime;
+	//std::cout << "parties served " << this->partiesServed << std::endl;
+	//std::cout << "total time served " << this->totalTimeServed << std::endl;
 }
 
 void Dungeon::resetDungeon()
