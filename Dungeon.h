@@ -11,8 +11,9 @@ public:
 	Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime);
 
 	void startDungeon();
-	void addParties(unsigned int assignedParties);
+	void assignParties(unsigned int assignedParties);
 	void clearDungeon();
+	void stopDungeon();
 
 	// Getters
 	unsigned int getId();
