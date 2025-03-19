@@ -17,6 +17,7 @@ void Dungeon::startDungeon()
 
 void Dungeon::assignParties(unsigned int assignedParties)
 {
+	std::lock_guard<std::mutex> lock(this->guard);
 	this->dungeonParties = assignedParties;
 	this->isActive = true;
 }
