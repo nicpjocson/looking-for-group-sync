@@ -20,24 +20,29 @@ void Dungeon::assignParties(unsigned int assignedParties)
 	std::lock_guard<std::mutex> lock(this->guard);
 	this->dungeonParties = assignedParties;
 	this->isActive = true;
+	std::this_thread::sleep_for(std::chrono::milliseconds(10)); // IS THIS ALLOWED
+	//std::cout << "dungeon " << this->id << " assigned " << assignedParties << " parties / isActive = " << this->isActive << std::endl;
 }
 
 void Dungeon::clearDungeon()
-{	
-	// There is at least one party in the dungeon
-	while (this->isRunning && this->isActive)
-	{	
-		std::cout << "dungeon " << this->id << " clearing " << this->dungeonParties << " parties" << std::endl;
-		std::lock_guard<std::mutex> lock(this->guard);
+{
+	while (this->isRunning)
+	{
+		if (this->isActive) {
+			std::lock_guard<std::mutex> lock(this->guard);
+			std::this_thread::sleep_for(std::chrono::milliseconds(10)); // IS THIS ALLOWED
+			//std::cout << "dungeon " << this->id << " clearing with " << this->dungeonParties << " parties" << std::endl;
 
-		/*int clearTime = randomClearTime();*/ int clearTime = 2;
+			int clearTime = 2/*ranadomClearTime()*/;
+			std::this_thread::sleep_for(std::chrono::seconds(clearTime));
 
-		// Simulate dungeon clearing with sleep
-		std::this_thread::sleep_for(std::chrono::seconds(clearTime));
-
-		this->updateDungeonStats(clearTime);
-		this->resetDungeon();
+			this->updateDungeonStats(clearTime);
+			this->resetDungeon();
+		}
 	}
+}
+
+
 void Dungeon::stopDungeon()
 {
 	std::lock_guard<std::mutex> lock(this->guard);
