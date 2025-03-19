@@ -41,5 +41,10 @@ private:
 	bool isValid(String param, String value);
 	void setParams(uintList parameters);
 
+	// Printing functions
+	void displaySummary();
+	void displayAllInstances();
+	void displayLeftoverPlayers();
+	String getStatus(bool status);
 };
 
