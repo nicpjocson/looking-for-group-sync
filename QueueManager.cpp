@@ -39,13 +39,6 @@ void QueueManager::createParties()
     this->tanksInQueue -= partyCount;
     this->healersInQueue -= partyCount;
     this->dpsInQueue -= partyCount * 3;
-
-    // Handle leftover players
-    this->leftoverTanks = this->tanksInQueue;
-    this->leftoverHealers = this->healersInQueue;
-    this->leftoverDPS = this->dpsInQueue;
-
-    std::cout << this->partiesInQueue << " parties created" << std::endl;
 }
 
 /*
@@ -59,19 +52,19 @@ unsigned int QueueManager::getPartiesInQueue()
     return this->partiesInQueue;
 }
 
-unsigned int QueueManager::getLeftoverTanks()
+unsigned int QueueManager::getTanksInQueue()
 {
-    return this->leftoverTanks;
+    return this->tanksInQueue;
 }
 
-unsigned int QueueManager::getLeftoverHealers()
+unsigned int QueueManager::getHealersInQueue()
 {
-    return this->leftoverHealers;
+    return this->healersInQueue;
 }
 
-unsigned int QueueManager::getLeftoverDPS()
+unsigned int QueueManager::getDPSInQueue()
 {
-    return this->leftoverDPS;
+    return this->dpsInQueue;
 }
 
 /*

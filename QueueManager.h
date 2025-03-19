@@ -13,9 +13,9 @@ public:
 
     // Getters
     unsigned int getPartiesInQueue();
-    unsigned int getLeftoverTanks();
-    unsigned int getLeftoverHealers();
-    unsigned int getLeftoverDPS();
+    unsigned int getTanksInQueue();
+    unsigned int getHealersInQueue();
+    unsigned int getDPSInQueue();
 
     // Other
     void decreasePartiesInQueue(int numParties);
@@ -34,9 +34,5 @@ private:
     unsigned int tanksInQueue = 0;
     unsigned int healersInQueue = 0;
     unsigned int dpsInQueue = 0;
-
-    unsigned int leftoverTanks = 0;
-    unsigned int leftoverHealers = 0;
-    unsigned int leftoverDPS = 0;
 };
 
