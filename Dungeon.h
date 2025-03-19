@@ -5,35 +5,39 @@
 #include <thread>
 #include <mutex>
 
-#include "config.h"
-
 class Dungeon
 {
 public:
-	Dungeon(int id);
+	Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime);
 
-	void startDungeon(int assignedParties);
-	void run();
+	void startDungeon();
+	void addParties(unsigned int assignedParties);
+	void clearDungeon();
 
 	// Getters
-	int getId();
+	unsigned int getId();
 	bool getIsRunning();
 	bool getIsActive();
-	int getPartiesServed();
-	int getTotalTimeServed();
+	unsigned int getPartiesServed();
+	unsigned int getTotalTimeServed();
 
 private:
 	std::mutex guard;
 
 	int id;
 	bool isRunning = false;
-	int dungeonParties = 0;
+	unsigned int dungeonParties = 0;
+	unsigned int minTime;
+	unsigned int maxTime;
 
 	// To be displayed after execution
 	bool isActive = false;
-	int partiesServed = 0;
-	int totalTimeServed = 0;
+	unsigned int partiesServed = 0;
+	unsigned int totalTimeServed = 0;
 
-	int randomClearTime();
+	unsigned int randomClearTime();
+
+	void updateDungeonStats(int clearTime);
+	void resetDungeon();
 };
 
