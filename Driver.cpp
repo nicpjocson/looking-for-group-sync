@@ -127,17 +127,22 @@ void Driver::setParams(uintList parameters)
     this->maxTime = parameters[5];
 }
 
+/*
+    Functions
+*/
 void Driver::initialize()
 {
+    QueueManager::getInstance()->initialize(this->tankPlayers, this->healerPlayers, this->dpsPlayers);
     QueueManager::getInstance()->createParties();
     this->createDungeons();
 }
 
 void Driver::createDungeons()
 {
-    for (int i = 0; i < MAX_DUNGEONS; i++) {
-        Dungeon* newDungeon = new Dungeon(i);
+    for (int i = 0; i < this->maxDungeons; i++) {
+        Dungeon* newDungeon = new Dungeon(i, this->minTime, this->maxTime);
         this->dungeons.push_back(newDungeon);
+        newDungeon->startDungeon();
     }
 }
 
@@ -153,20 +158,19 @@ void Driver::run()
         {
             numParties = QueueManager::getInstance()->getPartiesInQueue();
             assignedParties = 0;
-
+            
             if (numParties > 0)
             {
-                assignedParties = MAX_PARTIES;
-
-                if (numParties < MAX_PARTIES) {
+                assignedParties = this->maxParties;
+                if (numParties < this->maxParties) {
                     assignedParties = numParties;
                 }
-                //std::cout << "driver: assignedParties " << assignedParties << std::endl;
-                dungeon->startDungeon(assignedParties);
+
+                dungeon->addParties(assignedParties);
                 QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
-                //std::cout << "driver: after decrease " << QueueManager::getInstance()->getPartiesInQueue() << std::endl
+
                 // Stop program when all parties are assinged (i.e., no more parties in queue)
-                if (QueueManager::getInstance()->getPartiesInQueue() == 0) // NOT GOING IN HERE
+                if (QueueManager::getInstance()->getPartiesInQueue() == 0)
                 {
                     this->isRunning = false;
                     break;
