@@ -25,7 +25,7 @@ public:
 private:
 	std::mutex guard;
 
-	int id;
+	unsigned int id;
 	bool isRunning = false;
 	unsigned int dungeonParties = 0;
 	unsigned int minTime;

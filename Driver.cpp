@@ -180,7 +180,7 @@ void Driver::run()
     }
 
     this->waitForThreadsToFinish();
-    this->displaySummary();   
+    this->displaySummary();
 }
 
 void Driver::waitForThreadsToFinish()
