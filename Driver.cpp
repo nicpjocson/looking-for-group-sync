@@ -137,6 +137,7 @@ void Driver::initialize()
 void Driver::createDungeons()
 {
     for (int i = 0; i < this->maxInstances; i++) {
+        Dungeon* newDungeon = new Dungeon(&this->guard, i, this->minTime, this->maxTime);
         this->dungeons.push_back(newDungeon);
         newDungeon->startDungeon();
     }

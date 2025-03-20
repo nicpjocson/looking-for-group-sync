@@ -8,7 +8,7 @@
 class Dungeon
 {
 public:
-	Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime);
+	Dungeon(std::mutex* guard, unsigned int id, unsigned int minTime, unsigned int maxTime);
 
 	void startDungeon();
 	void assignParty();

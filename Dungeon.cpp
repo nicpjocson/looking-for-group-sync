@@ -1,8 +1,9 @@
 #include "Dungeon.h"
 #include "QueueManager.h"
 
-Dungeon::Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime)
+Dungeon::Dungeon(std::mutex* guard, unsigned int id, unsigned int minTime, unsigned int maxTime)
 {
+	this->guard = guard;
 	this->id = id;
 	this->minTime = minTime;
 	this->maxTime = maxTime;
@@ -10,7 +11,6 @@ Dungeon::Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime)
 
 void Dungeon::startDungeon()
 {
-	std::lock_guard<std::mutex> lock(this->guard);
 	this->isRunning = true;
 	std::thread thread(&Dungeon::clearDungeon, this);
 	thread.detach();

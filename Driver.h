@@ -20,6 +20,7 @@ public:
 	void run();
 
 private:
+	std::mutex guard;
 	bool isRunning = false;
 
 	// Program parameters
