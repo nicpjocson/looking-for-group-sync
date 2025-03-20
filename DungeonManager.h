@@ -5,14 +5,14 @@
 #include <fstream>
 #include <sstream>
 
-#include "QueueManager.h"
+#include "PartyManager.h"
 #include "Dungeon.h"
 
 typedef std::string String;
 typedef std::vector<String> strList;
 typedef std::vector<unsigned int> uintList;
 
-class Driver
+class DungeonManager
 {
 public:
 	bool getConfig();
@@ -24,7 +24,7 @@ private:
 	bool isRunning = false;
 
 	// Program parameters
-	unsigned int maxInstances = 0;   // 0 to max
+	unsigned int maxInstances = 0;  // 0 to max
 	unsigned int tankPlayers = 0;   // 0 to max
 	unsigned int healerPlayers = 0; // 0 to max
 	unsigned int dpsPlayers = 0;	// 0 to max

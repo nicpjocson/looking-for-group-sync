@@ -1,9 +1,9 @@
-#include "Driver.h"
+#include "DungeonManager.h"
 
 /*
     Configuration-related functions
 */
-bool Driver::getConfig()
+bool DungeonManager::getConfig()
 {
     String filename = "config.txt";
     strList strConfigs = this->readConfig(filename);
@@ -27,7 +27,7 @@ bool Driver::getConfig()
     return true;
 }
 
-strList Driver::readConfig(String filename) {
+strList DungeonManager::readConfig(String filename) {
     String line, key, value;
     strList configValues;
 
@@ -54,7 +54,7 @@ strList Driver::readConfig(String filename) {
     return configValues;
 }
 
-uintList Driver::validateConfig(strList strConfigs)
+uintList DungeonManager::validateConfig(strList strConfigs)
 {
     uintList numConfigs(strConfigs.size(), 0);
     bool valid = true;
@@ -86,7 +86,7 @@ uintList Driver::validateConfig(strList strConfigs)
     return numConfigs;
 }
 
-bool Driver::isValid(String param, String value)
+bool DungeonManager::isValid(String param, String value)
 {
     // Check for empty input
     if (value.empty()) {
@@ -114,7 +114,7 @@ bool Driver::isValid(String param, String value)
     return true;
 }
 
-void Driver::setParams(uintList parameters)
+void DungeonManager::setParams(uintList parameters)
 {
     this->maxInstances = parameters[0];
     this->tankPlayers = parameters[1];
@@ -127,14 +127,14 @@ void Driver::setParams(uintList parameters)
 /*
     Functions
 */
-void Driver::initialize()
+void DungeonManager::initialize()
 {
-    QueueManager::getInstance()->initialize(this->tankPlayers, this->healerPlayers, this->dpsPlayers);
-    QueueManager::getInstance()->createParties();
+    PartyManager::getInstance()->initialize(this->tankPlayers, this->healerPlayers, this->dpsPlayers);
+    PartyManager::getInstance()->createParties();
     this->createDungeons();
 }
 
-void Driver::createDungeons()
+void DungeonManager::createDungeons()
 {
     for (int i = 0; i < this->maxInstances; i++) {
         Dungeon* newDungeon = new Dungeon(&this->guard, i, this->minTime, this->maxTime);
@@ -143,7 +143,7 @@ void Driver::createDungeons()
     }
 }
 
-void Driver::run()
+void DungeonManager::run()
 {
     this->isRunning = true;
     while (this->isRunning)
@@ -151,15 +151,15 @@ void Driver::run()
         for (Dungeon* dungeon : this->dungeons)
         {
             // There is at least one party in queue
-            if (QueueManager::getInstance()->getPartiesInQueue() > 0)
+            if (PartyManager::getInstance()->getPartiesInQueue() > 0)
             {
-                dungeon->assignParty();
-                //std::cout << "partiesinqueue BEFORE " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
-                QueueManager::getInstance()->decreasePartiesInQueue();
-                //std::cout << "partiesinqueue AFTER " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
+                if (!dungeon->getIsActive()) {
+                    dungeon->assignParty();
+                    PartyManager::getInstance()->decreasePartiesInQueue();
+                }
 
                 // Stop program when all parties are assigned (i.e., no more parties in queue)
-                if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
+                if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
                     this->isRunning = false;
                     break;
                 }
@@ -171,7 +171,7 @@ void Driver::run()
     this->displaySummary();
 }
 
-void Driver::waitForThreadsToFinish()
+void DungeonManager::waitForThreadsToFinish()
 {
     bool standby = true;
 
@@ -191,7 +191,7 @@ void Driver::waitForThreadsToFinish()
     Printing functions
 
 */
-void Driver::displaySummary()
+void DungeonManager::displaySummary()
 {
     std::cout << "==================================================" << std::endl;
     std::cout << "SUMMARY" << std::endl;
@@ -202,7 +202,7 @@ void Driver::displaySummary()
     this->displayLeftoverPlayers();
 }
 
-void Driver::displayAllInstances() 
+void DungeonManager::displayAllInstances() 
 {
     // For all available dungeons
     for (Dungeon* dungeon : this->dungeons)
@@ -214,18 +214,18 @@ void Driver::displayAllInstances()
     }
 }
 
-void Driver::displayLeftoverPlayers()
+void DungeonManager::displayLeftoverPlayers()
 {
-    unsigned int leftoverTanks = QueueManager::getInstance()->getTanksInQueue();
-    unsigned int leftoverHealers = QueueManager::getInstance()->getHealersInQueue();
-    unsigned int leftoverDPS = QueueManager::getInstance()->getDPSInQueue();
+    unsigned int leftoverTanks = PartyManager::getInstance()->getTanksInQueue();
+    unsigned int leftoverHealers = PartyManager::getInstance()->getHealersInQueue();
+    unsigned int leftoverDPS = PartyManager::getInstance()->getDPSInQueue();
 
     std::cout << "Leftover Tanks: " << leftoverTanks << std::endl;
     std::cout << "Leftover Healers: " << leftoverHealers << std::endl;
     std::cout << "Leftover DPS: " << leftoverDPS << std::endl;
 }
 
-String Driver::getStatus(bool isActive) 
+String DungeonManager::getStatus(bool isActive) 
 {
     String status;
 
