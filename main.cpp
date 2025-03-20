@@ -1,13 +1,13 @@
-#include "Driver.h"
+#include "DungeonManager.h"
 
 int main()
 {
-    Driver driver;
+    DungeonManager DungeonManager;
     
-    if (driver.getConfig())
+    if (DungeonManager.getConfig())
     {
-        driver.initialize();
-        driver.run();
+        DungeonManager.initialize();
+        DungeonManager.run();
     }
 }
 
