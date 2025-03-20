@@ -1,18 +1,18 @@
-#include "QueueManager.h"
+#include "PartyManager.h"
 
-QueueManager* QueueManager::P_SHARED_INSTANCE = NULL;
-QueueManager::QueueManager() {}
-QueueManager::QueueManager(const QueueManager&) {}
+PartyManager* PartyManager::P_SHARED_INSTANCE = NULL;
+PartyManager::PartyManager() {}
+PartyManager::PartyManager(const PartyManager&) {}
 
-QueueManager* QueueManager::getInstance() 
+PartyManager* PartyManager::getInstance() 
 {
     if (P_SHARED_INSTANCE == NULL)
-        P_SHARED_INSTANCE = new QueueManager();
+        P_SHARED_INSTANCE = new PartyManager();
 
     return P_SHARED_INSTANCE;
 }
 
-void QueueManager::initialize(unsigned int tankPlayers, unsigned int healerPlayers, unsigned int dpsPlayers)
+void PartyManager::initialize(unsigned int tankPlayers, unsigned int healerPlayers, unsigned int dpsPlayers)
 {
     this->tanksInQueue = tankPlayers;
     this->healersInQueue = healerPlayers;
@@ -25,7 +25,7 @@ void QueueManager::initialize(unsigned int tankPlayers, unsigned int healerPlaye
 
 */
 // Create as many full parties as possible
-void QueueManager::createParties()
+void PartyManager::createParties()
 {
     // How many parties can be formed
     int partyCount = std::min({ this->tanksInQueue, this->healersInQueue, this->dpsInQueue / 3 });
@@ -39,8 +39,6 @@ void QueueManager::createParties()
     this->tanksInQueue -= partyCount;
     this->healersInQueue -= partyCount;
     this->dpsInQueue -= partyCount * 3;
-
-    std::cout << this->partiesInQueue << " parties created" << std::endl;
 }
 
 /*
@@ -48,23 +46,23 @@ void QueueManager::createParties()
     Getters
 
 */
-unsigned int QueueManager::getPartiesInQueue()
+unsigned int PartyManager::getPartiesInQueue()
 {
     std::lock_guard<std::mutex> lock(this->guard);
     return this->partiesInQueue;
 }
 
-unsigned int QueueManager::getTanksInQueue()
+unsigned int PartyManager::getTanksInQueue()
 {
     return this->tanksInQueue;
 }
 
-unsigned int QueueManager::getHealersInQueue()
+unsigned int PartyManager::getHealersInQueue()
 {
     return this->healersInQueue;
 }
 
-unsigned int QueueManager::getDPSInQueue()
+unsigned int PartyManager::getDPSInQueue()
 {
     return this->dpsInQueue;
 }
@@ -74,7 +72,7 @@ unsigned int QueueManager::getDPSInQueue()
     Other
 
 */
-void QueueManager::decreasePartiesInQueue()
+void PartyManager::decreasePartiesInQueue()
 {
     std::lock_guard<std::mutex> lock(this->guard);
     this->partiesInQueue -= 1;

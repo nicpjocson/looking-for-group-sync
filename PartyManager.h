@@ -3,10 +3,10 @@
 #include <queue>
 #include <mutex>
 
-class QueueManager
+class PartyManager
 {
 public:
-    static QueueManager* getInstance();
+    static PartyManager* getInstance();
     void initialize(unsigned int tankPlayers, unsigned int healerPlayers, unsigned int dpsPlayers);
 
     void createParties();
@@ -21,12 +21,12 @@ public:
     void decreasePartiesInQueue();
 
 private:
-    static QueueManager* P_SHARED_INSTANCE;
+    static PartyManager* P_SHARED_INSTANCE;
 
 private:
-    QueueManager();
-    QueueManager(const QueueManager&);
-    QueueManager& operator = (const QueueManager&);
+    PartyManager();
+    PartyManager(const PartyManager&);
+    PartyManager& operator = (const PartyManager&);
 
     std::mutex guard;
 
