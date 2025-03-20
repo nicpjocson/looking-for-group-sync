@@ -23,8 +23,7 @@ private:
 	bool isRunning = false;
 
 	// Program parameters
-	unsigned int maxDungeons = 0;   // 0 to max
-	unsigned int maxParties = 0;    // 0 to max
+	unsigned int maxInstances = 0;   // 0 to max
 	unsigned int tankPlayers = 0;   // 0 to max
 	unsigned int healerPlayers = 0; // 0 to max
 	unsigned int dpsPlayers = 0;	// 0 to max

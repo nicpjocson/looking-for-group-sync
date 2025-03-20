@@ -72,9 +72,9 @@ unsigned int QueueManager::getDPSInQueue()
     Other
 
 */
-void QueueManager::decreasePartiesInQueue(int numParties)
+void QueueManager::decreasePartiesInQueue()
 {
     std::lock_guard<std::mutex> lock(this->guard);
-    this->partiesInQueue -= numParties;
+    this->partiesInQueue -= 1;
 }
 

@@ -11,9 +11,9 @@ public:
 	Dungeon(unsigned int id, unsigned int minTime, unsigned int maxTime);
 
 	void startDungeon();
-	void assignParties(unsigned int assignedParties);
+	void assignParty();
 	void clearDungeon();
-	void stopDungeon();
+	//void stopDungeon();
 
 	// Getters
 	unsigned int getId();
@@ -23,11 +23,9 @@ public:
 	unsigned int getTotalTimeServed();
 
 private:
-	std::mutex guard;
-
-	unsigned int id;
+	std::mutex* guard;
 	bool isRunning = false;
-	unsigned int dungeonParties = 0;
+	unsigned int id;
 	unsigned int minTime;
 	unsigned int maxTime;
 
@@ -39,6 +37,5 @@ private:
 	unsigned int randomClearTime();
 
 	void updateDungeonStats(int clearTime);
-	void resetDungeon();
 };
 

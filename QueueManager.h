@@ -18,7 +18,7 @@ public:
     unsigned int getDPSInQueue();
 
     // Other
-    void decreasePartiesInQueue(int numParties);
+    void decreasePartiesInQueue();
 
 private:
     static QueueManager* P_SHARED_INSTANCE;

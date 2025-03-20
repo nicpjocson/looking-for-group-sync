@@ -116,8 +116,7 @@ bool Driver::isValid(String param, String value)
 
 void Driver::setParams(uintList parameters)
 {
-    this->maxDungeons = parameters[0];
-    this->maxParties = parameters[0];
+    this->maxInstances = parameters[0];
     this->tankPlayers = parameters[1];
     this->healerPlayers = parameters[2];
     this->dpsPlayers = parameters[3];
@@ -137,8 +136,7 @@ void Driver::initialize()
 
 void Driver::createDungeons()
 {
-    for (int i = 0; i < this->maxDungeons; i++) {
-        Dungeon* newDungeon = new Dungeon(i, this->minTime, this->maxTime);
+    for (int i = 0; i < this->maxInstances; i++) {
         this->dungeons.push_back(newDungeon);
         newDungeon->startDungeon();
     }
@@ -146,24 +144,18 @@ void Driver::createDungeons()
 
 void Driver::run()
 {
-    int numParties;
-    int assignedParties;
-
     this->isRunning = true;
     while (this->isRunning)
     {
         for (Dungeon* dungeon : this->dungeons)
         {
-            numParties = QueueManager::getInstance()->getPartiesInQueue();
-            assignedParties = 0;
-
-            if (numParties > 0)
+            // There is at least one party in queue
+            if (QueueManager::getInstance()->getPartiesInQueue() > 0)
             {
-                assignedParties = this->maxParties;
-                if (numParties < this->maxParties) assignedParties = numParties;
-
-                dungeon->assignParties(assignedParties);
-                QueueManager::getInstance()->decreasePartiesInQueue(assignedParties);
+                dungeon->assignParty();
+                //std::cout << "partiesinqueue BEFORE " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
+                QueueManager::getInstance()->decreasePartiesInQueue();
+                //std::cout << "partiesinqueue AFTER " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
 
                 // Stop program when all parties are assigned (i.e., no more parties in queue)
                 if (QueueManager::getInstance()->getPartiesInQueue() == 0)
@@ -173,10 +165,6 @@ void Driver::run()
                 }
             }
         }
-    }
-
-    for (Dungeon* dungeon : this->dungeons) {
-        dungeon->stopDungeon();
     }
 
     this->waitForThreadsToFinish();
