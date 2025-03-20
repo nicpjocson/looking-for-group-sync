@@ -8,7 +8,6 @@ class PartyManager
 public:
     static PartyManager* getInstance();
     void initialize(unsigned int tankPlayers, unsigned int healerPlayers, unsigned int dpsPlayers);
-
     void createParties();
 
     // Getters

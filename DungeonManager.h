@@ -1,50 +1,35 @@
 #pragma once
 #include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include <sstream>
 
-#include "PartyManager.h"
 #include "Dungeon.h"
-
-typedef std::string String;
-typedef std::vector<String> strList;
-typedef std::vector<unsigned int> uintList;
 
 class DungeonManager
 {
 public:
-	bool getConfig();
-	void initialize();
+	static DungeonManager* getInstance();
+	void initialize(unsigned int maxInstances, unsigned int minTime, unsigned int maxTime);
+	void createDungeons();
 	void run();
 
+	// Getters
+	std::vector<Dungeon*> getDungeons();
+
 private:
-	std::mutex guard;
+	static DungeonManager* P_SHARED_INSTANCE;
+
+private:
+	DungeonManager();
+	DungeonManager(const DungeonManager&);
+	DungeonManager& operator = (const DungeonManager&);
+	
 	bool isRunning = false;
-
-	// Program parameters
-	unsigned int maxInstances = 0;  // 0 to max
-	unsigned int tankPlayers = 0;   // 0 to max
-	unsigned int healerPlayers = 0; // 0 to max
-	unsigned int dpsPlayers = 0;	// 0 to max
-	unsigned int minTime = 0;		// 0 to maxTime
-	unsigned int maxTime = 0;		// 0 to 15
-
+	std::mutex guard;
 	std::vector<Dungeon*> dungeons;
-	void createDungeons();
-	void waitForThreadsToFinish();
 
-	// Reading and validating config
-	strList readConfig(String filename);
-	uintList validateConfig(strList parameters);
-	bool isValid(String param, String value);
-	void setParams(uintList parameters);
+	unsigned int maxInstances;
+	unsigned int minTime;
+	unsigned int maxTime;
 
-	// Printing functions
-	void displaySummary();
-	void displayAllInstances();
-	void displayLeftoverPlayers();
-	String getStatus(bool status);
+	void waitForDungeonsToFinish();
 };
 

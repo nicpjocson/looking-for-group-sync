@@ -23,12 +23,9 @@ void Dungeon::assignParty()
 
 void Dungeon::clearDungeon()
 {
-	while (this->isRunning)
-	{
-		if (this->isActive) 
-		{
+	while (this->isRunning) {
+		if (this->isActive) {
 			std::lock_guard<std::mutex> lock(*this->guard);
-			this->isActive = true;
 
 			// Simulate clear
 			int clearTime = this->randomClearTime();
@@ -40,8 +37,7 @@ void Dungeon::clearDungeon()
 
 			std::cout << "Cleared dungeon " << this->id << "." << std::endl;
 		}
-		else 
-		{
+		else {
 			if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
 				this->isRunning = false;
 			}
@@ -56,12 +52,14 @@ void Dungeon::updateDungeonStats(int clearTime)
 	this->totalTimeServed += clearTime;
 }
 
+/*
+	Returns a random unsigned integer between t1 and t2
+*/
 unsigned int Dungeon::randomClearTime()
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> distr(this->minTime, this->maxTime);
-
 	return distr(gen);
 }
 
@@ -82,7 +80,7 @@ bool Dungeon::getIsRunning()
 
 /*
 	Dungeon Status
-	* ACTIVE: Returns true if dungeon has at least one party.
+	* ACTIVE: Returns true if there is a party in the dungeon.
 	* EMPTY: Returns false, otherwise.
 */
 bool Dungeon::getIsActive()

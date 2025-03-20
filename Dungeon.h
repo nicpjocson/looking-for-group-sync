@@ -15,8 +15,8 @@ public:
 	void clearDungeon();
 
 	// Getters
-	unsigned int getId();
 	bool getIsRunning();
+	unsigned int getId();
 	bool getIsActive();
 	unsigned int getPartiesServed();
 	unsigned int getTotalTimeServed();
@@ -24,6 +24,7 @@ public:
 private:
 	std::mutex* guard;
 	bool isRunning = false;
+
 	unsigned int id;
 	unsigned int minTime;
 	unsigned int maxTime;
@@ -33,8 +34,7 @@ private:
 	unsigned int partiesServed = 0;
 	unsigned int totalTimeServed = 0;
 
-	unsigned int randomClearTime();
-
 	void updateDungeonStats(int clearTime);
+	unsigned int randomClearTime();
 };
 

@@ -128,14 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="DungeonManager.cpp" />
     <ClCompile Include="Dungeon.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="QueueManager.cpp" />
+    <ClCompile Include="PartyManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Driver.h" />
+    <ClInclude Include="DungeonManager.h" />
     <ClInclude Include="Dungeon.h" />
-    <ClInclude Include="QueueManager.h" />
+    <ClInclude Include="PartyManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
