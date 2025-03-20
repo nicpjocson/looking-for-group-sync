@@ -158,8 +158,7 @@ void Driver::run()
                 //std::cout << "partiesinqueue AFTER " << QueueManager::getInstance()->getPartiesInQueue() << std::endl;
 
                 // Stop program when all parties are assigned (i.e., no more parties in queue)
-                if (QueueManager::getInstance()->getPartiesInQueue() == 0)
-                {
+                if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
                     this->isRunning = false;
                     break;
                 }
@@ -178,7 +177,7 @@ void Driver::waitForThreadsToFinish()
     while (standby) {
         standby = false;
         for (Dungeon* dungeon : this->dungeons) {
-            if (dungeon->getIsRunning()) {
+            if (dungeon->getIsRunning()) {  
                 standby = true;
                 break;
             }

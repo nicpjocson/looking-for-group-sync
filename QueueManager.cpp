@@ -39,6 +39,8 @@ void QueueManager::createParties()
     this->tanksInQueue -= partyCount;
     this->healersInQueue -= partyCount;
     this->dpsInQueue -= partyCount * 3;
+
+    std::cout << this->partiesInQueue << " parties created" << std::endl;
 }
 
 /*

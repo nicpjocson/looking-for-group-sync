@@ -3,10 +3,8 @@
 int main()
 {
     Driver driver;
-
-    bool success = driver.getConfig();
     
-    if (success)
+    if (driver.getConfig())
     {
         driver.initialize();
         driver.run();
