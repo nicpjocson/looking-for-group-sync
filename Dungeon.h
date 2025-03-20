@@ -13,7 +13,6 @@ public:
 	void startDungeon();
 	void assignParty();
 	void clearDungeon();
-	//void stopDungeon();
 
 	// Getters
 	unsigned int getId();

@@ -1,5 +1,5 @@
 #include "Dungeon.h"
-#include "QueueManager.h"
+#include "PartyManager.h"
 
 Dungeon::Dungeon(std::mutex* guard, unsigned int id, unsigned int minTime, unsigned int maxTime)
 {
@@ -25,27 +25,24 @@ void Dungeon::clearDungeon()
 {
 	while (this->isRunning)
 	{
-		if (this->isActive) {
-			//std::cout << "Clearing dungeon " << this->id << std::endl;
+		if (this->isActive) 
+		{
 			std::lock_guard<std::mutex> lock(*this->guard);
 			this->isActive = true;
 
 			// Simulate clear
-			int clearTime = 2/*ranadomClearTime()*/;
+			int clearTime = this->randomClearTime();
 			std::this_thread::sleep_for(std::chrono::seconds(clearTime));
 
-			std::cout << "dungeon " << this->id << std::endl;
-			std::cout << "parties before " << this->partiesServed << std::endl;
 			this->partiesServed += 1;
-			std::cout << "parties after " << this->partiesServed << std::endl;
 			this->totalTimeServed += clearTime;
 			this->isActive = false;
 
-			//std::cout << "Cleared dungeon " << this->id << std::endl;
+			std::cout << "Cleared dungeon " << this->id << "." << std::endl;
 		}
 		else 
 		{
-			if (QueueManager::getInstance()->getPartiesInQueue() == 0) {
+			if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
 				this->isRunning = false;
 			}
 		}
@@ -57,8 +54,6 @@ void Dungeon::updateDungeonStats(int clearTime)
 {
 	this->partiesServed += 1;
 	this->totalTimeServed += clearTime;
-	//std::cout << "parties served " << this->partiesServed << std::endl;
-	//std::cout << "total time served " << this->totalTimeServed << std::endl;
 }
 
 unsigned int Dungeon::randomClearTime()
