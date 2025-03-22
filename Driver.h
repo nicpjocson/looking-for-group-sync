@@ -29,7 +29,7 @@ private:
 
 	// Reading and validating config
 	strList readConfig(String filename);
-	uintList validateConfig(strList parameters);
+	bool validateConfig(strList parameters);
 	bool isValid(String param, String value);
 	void setParams(uintList parameters);
 

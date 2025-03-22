@@ -31,17 +31,7 @@ bool Driver::getConfig()
         return false;
     }
 
-    uintList numConfigs = this->validateConfig(strConfigs);
-
-    // Validation failed
-    if (numConfigs.empty()) {
-        std::cerr << "Error: Configuration validation failed." << std::endl;
-        return false;
-    }
-
-    this->setParams(numConfigs);
-
-    return true;
+    return this->validateConfig(strConfigs);
 }
 
 strList Driver::readConfig(String filename) 
@@ -72,49 +62,43 @@ strList Driver::readConfig(String filename)
     return configValues;
 }
 
-uintList Driver::validateConfig(strList strConfigs)
+bool Driver::validateConfig(strList strConfigs)
 {
-    uintList numConfigs(strConfigs.size(), 0);
     bool valid = true;
 
-    if (!this->isValid("MAX_INSTANCES", strConfigs[0])) valid = false;
-    else numConfigs[0] = std::stoi(strConfigs[0]);
+    if (!this->isValid("n", strConfigs[0])) valid &= false;
+    else this->maxInstances = std::stoi(strConfigs[0]);
 
-    if (!this->isValid("TANK_PLAYERS", strConfigs[1])) valid = false;
-    else numConfigs[1] = std::stoi(strConfigs[1]);
+    if (!this->isValid("t", strConfigs[1])) valid &= false;
+    else this->tankPlayers = std::stoi(strConfigs[1]);
 
-    if (!this->isValid("HEALER_PLAYERS", strConfigs[2])) valid = false;
-    else numConfigs[2] = std::stoi(strConfigs[2]);
+    if (!this->isValid("h", strConfigs[2])) valid &= false;
+    else this->healerPlayers = std::stoi(strConfigs[2]);
+    
+    if (!this->isValid("d", strConfigs[3])) valid &= false;
+    else this->dpsPlayers = std::stoi(strConfigs[3]);
 
-    if (!this->isValid("DPS_PLAYERS", strConfigs[3])) valid = false;
-    else numConfigs[3] = std::stoi(strConfigs[3]);
+    if (!this->isValid("t1", strConfigs[4])) valid &= false;
+    else this->minTime = std::stoi(strConfigs[4]);
 
-    if (!this->isValid("MIN_TIME", strConfigs[4])) valid = false;
-    else numConfigs[4] = std::stoi(strConfigs[4]);
+    if (!this->isValid("t2", strConfigs[5])) valid &= false;
+    else this->maxTime = std::stoi(strConfigs[5]);
 
-    if (!this->isValid("MAX_TIME", strConfigs[5])) valid = false;
-    else numConfigs[5] = std::stoi(strConfigs[5]);
-
-    if (!valid) {
-        return {};
-        std::cout << std::endl;
-    }
-
-    return numConfigs;
+    return valid;
 }
 
 bool Driver::isValid(String param, String value)
 {
     // Check for empty input
     if (value.empty()) {
-        std::cerr << "Error: " << param << " is empty." << std::endl;
+        std::cerr << "Error in config.txt: " << param << " is empty." << std::endl;
         return false;
     }
 
     // Check for non-integer characters
     for (char c : value) {
         if (!isdigit(c)) {
-            std::cerr << "Error: " << param << " contains non-numeric characters." << std::endl;
+            std::cerr << "Error in config.txt: " << param << " contains non-numeric characters: " << param << " = " << value << std::endl;
             return false;
         }
     }
@@ -124,8 +108,23 @@ bool Driver::isValid(String param, String value)
 
     // Check exceeding max for unsigned int
     if (num > std::numeric_limits<unsigned int>::max()) {
-        std::cerr << "Error: " << param << " exceeds the max unsigned int value." << std::endl;
+        std::cerr << "Error in config.txt: " << param << " exceeds the max unsigned int value: " << param << " = " << value << std::endl;
         return false;
+    }
+
+    // Handle checking time range
+    if (param == "t2") {
+        // Check if t1 <= t2
+        if (this->minTime > num) {
+            std::cerr << "Error in config.txt: " << param << " is greater than t2." << std::endl;
+            std::cerr << "t1 = " << this->minTime << ", t2 = " << num << std::endl;
+            return false;
+        }
+        // Check if t2 <= 15
+        if (num > 15) {
+            std::cerr << "Error in config.txt: " << param << " is greater than 15: t2 = " << num << std::endl;
+            return false;
+        }
     }
 
     return true;
