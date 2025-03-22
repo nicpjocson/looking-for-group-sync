@@ -23,6 +23,7 @@ public:
 
 private:
 	std::mutex* guard;
+	
 	bool isRunning = false;
 
 	unsigned int id;

@@ -23,6 +23,7 @@ private:
 	DungeonManager& operator = (const DungeonManager&);
 	
 	bool isRunning = false;
+	
 	std::mutex guard;
 	std::vector<Dungeon*> dungeons;
 
