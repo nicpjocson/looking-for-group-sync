@@ -23,15 +23,15 @@ void Driver::run()
 bool Driver::getConfig()
 {
     String filename = "config.txt";
-    List strConfigs = this->readConfig(filename);
-
+    List configs = this->readConfig(filename);
+    
     // File is empty or failed to read
-    if (strConfigs.empty()) {
+    if (configs.empty()) {
         std::cerr << "Error: Failed to read config file or it is empty." << std::endl;
         return false;
     }
 
-    return this->validateConfig(strConfigs);
+    return this->validateConfig(configs);
 }
 
 List Driver::readConfig(String filename)
