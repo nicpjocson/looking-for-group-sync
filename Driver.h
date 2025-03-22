@@ -8,8 +8,7 @@
 #include "PartyManager.h"
 
 typedef std::string String;
-typedef std::vector<String> strList;
-typedef std::vector<unsigned int> uintList;
+typedef std::vector<String> List;
 
 class Driver
 {
@@ -28,10 +27,9 @@ private:
 	unsigned int maxTime = 0;		// 0 to 15
 
 	// Reading and validating config
-	strList readConfig(String filename);
-	bool validateConfig(strList parameters);
+	List readConfig(String filename);
+	bool validateConfig(List parameters);
 	bool isValid(String param, String value);
-	void setParams(uintList parameters);
 
 	// Printing functions
 	void displaySummary();

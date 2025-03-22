@@ -23,7 +23,7 @@ void Driver::run()
 bool Driver::getConfig()
 {
     String filename = "config.txt";
-    strList strConfigs = this->readConfig(filename);
+    List strConfigs = this->readConfig(filename);
 
     // File is empty or failed to read
     if (strConfigs.empty()) {
@@ -34,10 +34,10 @@ bool Driver::getConfig()
     return this->validateConfig(strConfigs);
 }
 
-strList Driver::readConfig(String filename) 
+List Driver::readConfig(String filename)
 {
     String line, key, value;
-    strList configValues;
+    List configValues;
 
     std::ifstream f(filename);
 
@@ -62,7 +62,7 @@ strList Driver::readConfig(String filename)
     return configValues;
 }
 
-bool Driver::validateConfig(strList strConfigs)
+bool Driver::validateConfig(List strConfigs)
 {
     bool valid = true;
 
@@ -128,16 +128,6 @@ bool Driver::isValid(String param, String value)
     }
 
     return true;
-}
-
-void Driver::setParams(uintList parameters)
-{
-    this->maxInstances = parameters[0];
-    this->tankPlayers = parameters[1];
-    this->healerPlayers = parameters[2];
-    this->dpsPlayers = parameters[3];
-    this->minTime = parameters[4];
-    this->maxTime = parameters[5];
 }
 
 /*
