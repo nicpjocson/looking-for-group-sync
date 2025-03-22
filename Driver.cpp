@@ -49,11 +49,18 @@ List Driver::readConfig(String filename)
     while (getline(f, line)) {
         std::istringstream iss(line);
         iss >> key;
-        getline(iss >> std::ws, value);
 
-        if (value.front() == '\"' && value.back() == '\"') {
-            value = value.substr(1, value.length() - 2);
+        // Store an empty string if no value present
+        if (iss.eof()) value = "";
+        else {
+            getline(iss >> std::ws, value);
+
+            // Handle quoted strings
+            if (!value.empty() && value.front() == '\"' && value.back() == '\"') {
+                value = value.substr(1, value.length() - 2);
+            }
         }
+
         configValues.push_back(value);
     }
 
