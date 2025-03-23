@@ -119,6 +119,12 @@ bool Driver::isValid(String param, String value)
         return false;
     }
 
+    // Check dungeon and time == 0
+    if (num == 0 && param == "n" || param == "t1" || param == "t2") {
+        std::cerr << "Error in config.txt: " << param << " must be greater than 0." << std::endl;
+        return false;
+    }
+
     // Handle checking time range
     if (param == "t2") {
         // Check if t1 <= t2
