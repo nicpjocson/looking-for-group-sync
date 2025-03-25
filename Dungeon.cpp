@@ -27,6 +27,8 @@ void Dungeon::clearDungeon()
 		if (this->isActive) {
 			std::lock_guard<std::mutex> lock(*this->guard);
 
+			std::cout << "Clearing dungeon " << this->id << "... ";
+
 			// Simulate clear
 			int clearTime = this->randomClearTime();
 			std::this_thread::sleep_for(std::chrono::seconds(clearTime));
@@ -35,7 +37,7 @@ void Dungeon::clearDungeon()
 			this->totalTimeServed += clearTime;
 			this->isActive = false;
 
-			std::cout << "Cleared dungeon " << this->id << "." << std::endl;
+			std::cout << "Cleared!" << std::endl;
 		}
 		else {
 			if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
