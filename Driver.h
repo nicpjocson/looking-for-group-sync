@@ -14,6 +14,7 @@ class Driver
 {
 public:
 	Driver();
+	~Driver();
 
 	bool getConfig();
 	const void initialize();
