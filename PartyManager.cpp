@@ -28,17 +28,12 @@ void PartyManager::initialize(unsigned int tankPlayers, unsigned int healerPlaye
 void PartyManager::createParties()
 {
     // How many parties can be formed
-    int partyCount = std::min({ this->tanksInQueue, this->healersInQueue, this->dpsInQueue / 3 });
-
-    // Add parties to the queue
-    for (int i = 0; i < partyCount; i++) {
-        this->partiesInQueue++;
-    }
+    this->partiesInQueue = std::min({ this->tanksInQueue, this->healersInQueue, this->dpsInQueue / 3 });
 
     // Reduce the available players
-    this->tanksInQueue -= partyCount;
-    this->healersInQueue -= partyCount;
-    this->dpsInQueue -= partyCount * 3;
+    this->tanksInQueue -= this->partiesInQueue;
+    this->healersInQueue -= this->partiesInQueue;
+    this->dpsInQueue -= this->partiesInQueue * 3;
 }
 
 /*
