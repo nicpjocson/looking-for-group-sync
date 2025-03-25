@@ -1,6 +1,8 @@
 #include "Driver.h"
 
-void Driver::initialize()
+Driver::Driver() {}
+
+const void Driver::initialize()
 {
     DungeonManager::getInstance()->initialize(this->maxInstances, this->minTime, this->maxTime);
     PartyManager::getInstance()->initialize(this->tankPlayers, this->healerPlayers, this->dpsPlayers);
@@ -97,7 +99,7 @@ bool Driver::validateConfig()
     return valid;
 }
 
-bool Driver::isValid(String param, String value)
+const bool Driver::isValid(String param, String value)
 {
     // Check for empty input
     if (value.empty()) {

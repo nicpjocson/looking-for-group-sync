@@ -14,7 +14,7 @@ class Driver
 {
 public:
 	bool getConfig();
-	void initialize();
+	const void initialize();
 	void run();
 
 private:
@@ -30,7 +30,7 @@ private:
 	// Reading and validating config
 	HashMap readConfig(String filename);
 	bool validateConfig();
-	bool isValid(String param, String value);
+	const bool isValid(String param, String value);
 
 	// Printing functions
 	void displaySummary();
