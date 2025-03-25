@@ -40,12 +40,12 @@ void DungeonManager::run()
                     dungeon->assignParty();
                     PartyManager::getInstance()->decreasePartiesInQueue();
                 }
+            }
 
-                // Stop program when all parties are assigned (i.e., no more parties in queue)
-                if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
-                    this->isRunning = false;
-                    break;
-                }
+            // Stop program when all parties are assigned (i.e., no more parties in queue)
+            if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
+                this->isRunning = false;
+                break;
             }
         }
     }
