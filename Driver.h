@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <string>
+#include <unordered_map>
 #include <fstream>
 #include <sstream>
 
@@ -8,7 +8,7 @@
 #include "PartyManager.h"
 
 typedef std::string String;
-typedef std::vector<String> List;
+typedef std::unordered_map<String, String> HashMap;
 
 class Driver
 {
@@ -18,7 +18,8 @@ public:
 	void run();
 
 private:
-	// Program parameters
+	// Program configuration
+	HashMap configValues;
 	unsigned int maxInstances = 0;  // 0 to max
 	unsigned int tankPlayers = 0;   // 0 to max
 	unsigned int healerPlayers = 0; // 0 to max
@@ -27,8 +28,8 @@ private:
 	unsigned int maxTime = 0;		// 0 to 15
 
 	// Reading and validating config
-	List readConfig(String filename);
-	bool validateConfig(List parameters);
+	HashMap readConfig(String filename);
+	bool validateConfig();
 	bool isValid(String param, String value);
 
 	// Printing functions

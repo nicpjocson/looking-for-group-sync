@@ -20,29 +20,27 @@ void Driver::run()
     Configuration-related functions
 
 */
-bool Driver::getConfig()
+bool Driver::getConfig() 
 {
-    String filename = "config.txt";
-    List configs = this->readConfig(filename);
-    
-    // File is empty or failed to read
-    if (configs.empty()) {
+    std::string filename = "config.txt";
+    this->configValues = this->readConfig(filename);
+
+    if (configValues.empty()) {
         std::cerr << "Error: Failed to read config file or it is empty." << std::endl;
         return false;
     }
 
-    return this->validateConfig(configs);
+    return this->validateConfig();
 }
 
-List Driver::readConfig(String filename)
+HashMap Driver::readConfig(String filename)
 {
-    String line, key, value;
-    List configValues;
-
+    HashMap config;
     std::ifstream f(filename);
+    std::string line, key, value;
 
     if (!f.is_open()) {
-        std::cerr << "Error opening the file.";
+        std::cerr << "Error opening the file." << std::endl;
         return {};
     }
 
@@ -50,46 +48,44 @@ List Driver::readConfig(String filename)
         std::istringstream iss(line);
         iss >> key;
 
-        // Store an empty string if no value present
-        if (iss.eof()) value = "";
+        if (iss.eof()) {
+            value = "";
+        }
         else {
             getline(iss >> std::ws, value);
-
-            // Handle quoted strings
-            if (!value.empty() && value.front() == '\"' && value.back() == '\"') {
+            if (!value.empty() && value.front() == '"' && value.back() == '"') {
                 value = value.substr(1, value.length() - 2);
             }
         }
-
-        configValues.push_back(value);
+        config[key] = value;
     }
 
     f.close();
 
-    return configValues;
+    return config;
 }
 
-bool Driver::validateConfig(List strConfigs)
+bool Driver::validateConfig() 
 {
     bool valid = true;
 
-    if (!this->isValid("n", strConfigs[0])) valid &= false;
-    else this->maxInstances = std::stoi(strConfigs[0]);
+    valid &= this->isValid("n", configValues["n"]);
+    this->maxInstances = std::stoi(configValues["n"]);
 
-    if (!this->isValid("t", strConfigs[1])) valid &= false;
-    else this->tankPlayers = std::stoi(strConfigs[1]);
+    valid &= this->isValid("t", configValues["t"]);
+    this->tankPlayers = std::stoi(configValues["t"]);
 
-    if (!this->isValid("h", strConfigs[2])) valid &= false;
-    else this->healerPlayers = std::stoi(strConfigs[2]);
-    
-    if (!this->isValid("d", strConfigs[3])) valid &= false;
-    else this->dpsPlayers = std::stoi(strConfigs[3]);
+    valid &= this->isValid("h", configValues["h"]);
+    this->healerPlayers = std::stoi(configValues["h"]);
 
-    if (!this->isValid("t1", strConfigs[4])) valid &= false;
-    else this->minTime = std::stoi(strConfigs[4]);
+    valid &= this->isValid("d", configValues["d"]);
+    this->dpsPlayers = std::stoi(configValues["d"]);
 
-    if (!this->isValid("t2", strConfigs[5])) valid &= false;
-    else this->maxTime = std::stoi(strConfigs[5]);
+    valid &= this->isValid("t1", configValues["t1"]);
+    this->minTime = std::stoi(configValues["t1"]);
+
+    valid &= this->isValid("t2", configValues["t2"]);
+    this->maxTime = std::stoi(configValues["t2"]);
 
     return valid;
 }
@@ -120,22 +116,24 @@ bool Driver::isValid(String param, String value)
     }
 
     // Check dungeon and time == 0
-    if (num == 0 && param == "n" || param == "t1" || param == "t2") {
-        std::cerr << "Error in config.txt: " << param << " must be greater than 0." << std::endl;
-        return false;
+    if (param == "n" || param == "t1" || param == "t2") {
+        if (num == 0) {
+            std::cerr << "Error in config.txt: " << param << " must be greater than 0." << std::endl;
+            return false;
+        }
     }
 
     // Handle checking time range
     if (param == "t2") {
-        // Check if t1 <= t2
-        if (this->minTime > num) {
-            std::cerr << "Error in config.txt: " << param << " is greater than t2." << std::endl;
-            std::cerr << "t1 = " << this->minTime << ", t2 = " << num << std::endl;
-            return false;
-        }
         // Check if t2 <= 15
         if (num > 15) {
             std::cerr << "Error in config.txt: " << param << " is greater than 15: t2 = " << num << std::endl;
+            return false;
+        }
+        // Check if t1 <= t2
+        if (this->minTime > num) {
+            std::cerr << "Error in config.txt: t1 is greater than t2." << std::endl;
+            std::cerr << "t1 = " << this->minTime << ", t2 = " << num << std::endl;
             return false;
         }
     }
