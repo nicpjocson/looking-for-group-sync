@@ -13,6 +13,8 @@ typedef std::unordered_map<String, String> HashMap;
 class Driver
 {
 public:
+	Driver();
+
 	bool getConfig();
 	const void initialize();
 	void run();
