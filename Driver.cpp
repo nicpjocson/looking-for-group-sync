@@ -143,8 +143,7 @@ const bool Driver::isValid(String param, String value)
         }
         // Check if t1 <= t2
         if (this->minTime > num) {
-            std::cerr << "Error in config.txt: t1 is greater than t2." << std::endl;
-            std::cerr << "t1 = " << this->minTime << ", t2 = " << num << std::endl;
+            std::cerr << "Error in config.txt: t1 is greater than t2: t1 = " << this->minTime << ", t2 = " << num << std::endl;
             return false;
         }
     }
@@ -163,7 +162,7 @@ void Driver::displaySummary()
     std::cout << "SUMMARY" << std::endl;
     std::cout << "==================================================" << std::endl;
     this->displayAllInstances();
-    std::cout << "--------------------------------------------------" << std::endl;
+    std::cout << "--------------------------------------------------" << std::endl << std::endl;
     std::cout << "LEFTOVER PLAYERS" << std::endl;
     this->displayLeftoverPlayers();
 }
