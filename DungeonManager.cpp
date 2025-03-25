@@ -1,4 +1,6 @@
 #include "DungeonManager.h"
+#include "PartyManager.h"
+#include "Dungeon.h"
 
 DungeonManager* DungeonManager::P_SHARED_INSTANCE = NULL;
 DungeonManager::DungeonManager() {}

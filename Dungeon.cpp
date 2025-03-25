@@ -1,4 +1,7 @@
 #include "Dungeon.h"
+#include <chrono>
+#include <random>
+#include <thread>
 #include "PartyManager.h"
 
 Dungeon::Dungeon(std::mutex* guard, unsigned int id, unsigned int minTime, unsigned int maxTime)

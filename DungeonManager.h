@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include <mutex>
 
-#include "PartyManager.h"
-#include "Dungeon.h"
+class Dungeon;
 
 class DungeonManager
 {

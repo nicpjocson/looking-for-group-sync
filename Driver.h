@@ -4,9 +4,6 @@
 #include <fstream>
 #include <sstream>
 
-#include "DungeonManager.h"
-#include "PartyManager.h"
-
 typedef std::string String;
 typedef std::unordered_map<String, String> HashMap;
 
