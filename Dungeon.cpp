@@ -27,7 +27,7 @@ void Dungeon::clearDungeon()
 		if (this->isActive) {
 			std::lock_guard<std::mutex> lock(*this->guard);
 
-			std::cout << "Clearing dungeon " << this->id << "... ";
+			std::cout << "Clearing Dungeon " << this->id << "... ";
 
 			// Simulate clear
 			int clearTime = this->randomClearTime();
