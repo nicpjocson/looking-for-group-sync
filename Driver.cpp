@@ -2,6 +2,8 @@
 
 Driver::Driver() {}
 
+Driver::~Driver() {}
+
 const void Driver::initialize()
 {
     DungeonManager::getInstance()->initialize(this->maxInstances, this->minTime, this->maxTime);
