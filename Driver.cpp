@@ -65,27 +65,34 @@ HashMap Driver::readConfig(String filename)
     return config;
 }
 
-bool Driver::validateConfig() 
+bool Driver::validateConfig()
 {
     bool valid = true;
 
-    valid &= this->isValid("n", configValues["n"]);
-    this->maxInstances = std::stoi(configValues["n"]);
+    if (!this->isValid("n", configValues["n"])) valid &= false;
+    else this->maxInstances = std::stoi(configValues["n"]);
 
-    valid &= this->isValid("t", configValues["t"]);
-    this->tankPlayers = std::stoi(configValues["t"]);
+    if (!this->isValid("t", configValues["t"])) valid &= false;
+    else this->tankPlayers = std::stoi(configValues["t"]);
 
-    valid &= this->isValid("h", configValues["h"]);
-    this->healerPlayers = std::stoi(configValues["h"]);
+    if (!this->isValid("h", configValues["h"])) valid &= false;
+    else this->healerPlayers = std::stoi(configValues["h"]);
 
-    valid &= this->isValid("d", configValues["d"]);
-    this->dpsPlayers = std::stoi(configValues["d"]);
+    if (!this->isValid("d", configValues["d"])) valid &= false;
+    else this->dpsPlayers = std::stoi(configValues["d"]);
 
-    valid &= this->isValid("t1", configValues["t1"]);
-    this->minTime = std::stoi(configValues["t1"]);
+    if (!this->isValid("t1", configValues["t1"])) valid &= false;
+    else this->minTime = std::stoi(configValues["t1"]);
 
-    valid &= this->isValid("t2", configValues["t2"]);
-    this->maxTime = std::stoi(configValues["t2"]);
+    if (!this->isValid("t2", configValues["t2"])) valid &= false;
+    else this->maxTime = std::stoi(configValues["t2"]);
+
+    //std::cout << "maxinstances " << this->maxInstances << std::endl;
+    //std::cout << "tanks " << this->tankPlayers << std::endl;
+    //std::cout << "healers " << this->healerPlayers << std::endl;
+    //std::cout << "dps " << this->dpsPlayers << std::endl;
+    //std::cout << "mintime " << this->minTime << std::endl;
+    //std::cout << "maxtime " << this->maxTime << std::endl;
 
     return valid;
 }
