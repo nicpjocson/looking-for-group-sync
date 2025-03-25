@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
+#include <mutex>
 
+#include "PartyManager.h"
 #include "Dungeon.h"
 
 class DungeonManager
