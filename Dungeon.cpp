@@ -21,6 +21,7 @@ void Dungeon::startDungeon()
 
 void Dungeon::assignParty()
 {
+	if (this->isActive) this->isActive = false;
 	this->isActive = true;
 }
 
@@ -48,7 +49,6 @@ void Dungeon::clearDungeon()
 			}
 		}
 	}
-	
 }
 
 void Dungeon::updateDungeonStats(int clearTime)
