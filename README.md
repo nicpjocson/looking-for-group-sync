@@ -22,8 +22,8 @@ The program outputs the following details:
 ### Dungeons  
   * **ID** - Unique identifier of each Dungeon  
   * **Status** – Indicates whether the Dungeon is active (currently occupied by a Party) or empty (waiting for a new Party) 
-  * **Parties** served - Number of Parties that completed the Dungeon  
-  * **Total time** served - Accumulated time spent serving Parties  
+  * **Parties served** - Number of Parties that completed the Dungeon  
+  * **Total time served** - Accumulated time spent serving Parties  
 ### Leftover players  
   * **Tanks** – Number of Tanks remaining in the queue
   * **Healers** – Number of Healers remaining in the queue
