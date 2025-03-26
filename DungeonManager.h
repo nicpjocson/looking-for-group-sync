@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <thread>
 #include <mutex>
 
 class Dungeon;
