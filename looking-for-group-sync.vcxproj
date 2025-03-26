@@ -141,6 +141,7 @@
     <ClInclude Include="PartyManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="main.bat" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
