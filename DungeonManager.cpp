@@ -33,21 +33,26 @@ void DungeonManager::createDungeons()
 void DungeonManager::run()
 {
     this->isRunning = true;
+    unsigned int dungeonIndex = 0;
+
     while (this->isRunning) {
-        for (Dungeon* dungeon : this->dungeons) {
-            // There is at least one party in queue
-            if (PartyManager::getInstance()->getPartiesInQueue() > 0) {
-                if (!dungeon->getIsActive()) {
-                    dungeon->assignParty();
-                    PartyManager::getInstance()->decreasePartiesInQueue();
-                }
+        if (PartyManager::getInstance()->getPartiesInQueue() > 0) {
+            Dungeon* dungeon = this->dungeons[dungeonIndex];
+
+            // Dungeon is empty
+            if (!dungeon->getIsActive()) {
+                // Assign party
+                dungeon->assignParty();
+                // Decrement parties in queue
+                PartyManager::getInstance()->decreasePartiesInQueue();
             }
 
-            // Stop program when all parties are assigned (i.e., no more parties in queue)
-            if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
-                this->isRunning = false;
-                break;
-            }
+            // Cycle through dungeons
+            dungeonIndex = (dungeonIndex + 1) % this->dungeons.size();
+        }
+
+        if (PartyManager::getInstance()->getPartiesInQueue() == 0) {
+            this->isRunning = false;
         }
     }
 
